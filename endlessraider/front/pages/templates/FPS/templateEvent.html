@@ -1,0 +1,32 @@
+<div class="panel-heading">
+		<h3>Liste des inscrits <span class="badge">{{event.listParticipants.length}}</span><h3>
+	</div>
+	<div class="panel-body">
+		<label for="filtreStatutTab">Filtrer sur le statut : </label>
+		<select ng-model="filtreStatutTab" id="filtreStatutTab" ng-options="statut.libelle for statut in listStatutsRef">
+			<option value=''>Tout</option>
+		</select>
+	<table class='table'>
+		<tr>
+			<th>
+				<a href='' ng-click="changeOrder('personnage.nom')">Joueur
+				<span ng-if="orderTabASC && orderTab == 'personnage.nom'" class=" glyphicon glyphicon-sort-by-alphabet"></span>
+				<span ng-if="!orderTabASC && orderTab == '-personnage.nom'" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+				</a>
+			</th>
+			<th><a href='' ng-click="changeOrder('statut.libelle')">Statut
+				<span ng-if="orderTabASC && orderTab == 'statut.libelle'" class=" glyphicon glyphicon-sort-by-alphabet"></span>
+				<span ng-if="!orderTabASC && orderTab == '-statut.libelle'" class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+				</a>
+			</th>
+			<th>Commentaire</th>
+		</tr>
+		<tr ng-repeat="participant in event.listParticipants | filtreStatut:filtreStatutTab | orderBy:orderTab" >
+			<td>{{participant.personnage.nom}} ({{participant.user.login}})</td>
+			<td>{{participant.statut.libelle}}</td>
+			<td>
+				<div ng-include="templateEvent.url+'gestionCommentaire.html'"></div>
+			</td>
+		</tr>
+	</table>
+</div>

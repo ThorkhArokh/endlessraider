@@ -1,0 +1,19 @@
+<div id='templateDetail' ng-controller="TemplateCtrl">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span><img ng-if="template.jeu.iconPath" class="icone" ng-src="{{template.jeu.iconPath}}"/> {{template.nom}}</span>
+	</div>
+	<div class="panel-body">
+		<span ng-hide="!template.imagePath"><img ng-if="template.imagePath" ng-src="{{template.imagePath}}"/></span>
+		<span ng-hide="!template.desc" ta-bind="text" ng-model="template.desc"></span>
+		
+		<p ng-hide="!template.nbrParticipantMax">Nombre de joueurs maximum : {{template.nbrParticipantMax}}</p>
+		
+		<!-- On inclus le bon template selon le type de jeu -->
+		<div ng-include="templateTemplate.url+template.jeu.type.code+'/'+templateTemplate.nom"></div>
+		
+		<a class="btn btn-default navbar-btn" id="retour" href="#/administrer/section/templates" >Retour</a>
+	</div>
+</div>
+
+</div>

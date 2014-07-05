@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+	
+	<div ng-show="typeAdd" class="panel-heading">Ajouter un personnage</div>
+	<div ng-show="!typeAdd" class="panel-heading">Editer un personnage</div>
+	<div class="panel-body" ng-controller="PersonnageCtrl">
+		<div ng-show="listJeux.length < 1" class="alert alert-warning">Vous ne pouvez pas ajouter de personnage. Aucun jeu n'est actuellement créé.
+			<span ng-if="isAuthorized('admin')" >Cliquez <a href='#/administrer/editJeu'>ici</a> pour vous en créer un.</span>
+		</div>
+		<div ng-if="listJeux.length > 0">
+		<form name="addPersoForm" ng-submit="submit(personnage)" >
+			<div class="form-group">
+				<div class="input-group">
+					<label for="nom">Nom:<span>*</span></label>
+					<div>
+					<input class="form-control" required type="text" id="nom" name="nom" placeholder="Nom"
+						ng-model="personnage.nom" />
+					</div>
+				</div>
+				<div class="input-group">
+					<label for="genre">Genre:</label>
+					<select class="form-control" id="genre" ng-model="personnage.genre">
+					  <option value="M">Homme</option>
+					  <option value="F">Femme</option>
+					</select>
+				</div>
+				<div class="input-group">
+					<label for="jeu">Jeu:<span>*</span></label>
+					<select ng-change="resetClasseRace()" ng-init="personnage.jeu" required id="jeu" name="jeu" class="form-control" ng-model="personnage.jeu" ng-options="jeu.nom for jeu in listJeux"></select>
+				</div>
+				<!-- On inclus le bon template selon le type de jeu -->
+				<div ng-include="templatePerso.url+personnage.jeu.type.code+'/'+templatePerso.nom"></div>
+			</div>
+		<a class="btn btn-default navbar-btn" id="retour" href="#/profile" >Retour</a>
+		<button class="btn btn-default navbar-btn" ng-disabled="addPersoForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>
+		</form>
+		<div ng-show="message.libelle" class="alert {{message.type}}">{{message.libelle}}</div>
+	</div>
+</div>

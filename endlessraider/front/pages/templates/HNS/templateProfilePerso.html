@@ -1,0 +1,17 @@
+<table class="table">
+<tbody>
+	<tr>
+		<th>Nom</th>
+		<th>Classe</th>
+		<th>Niveau</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="perso in listePersos | filtrejeu : showPanel">
+		<td>{{perso.nom}}</td>
+		<td><img title="{{perso.classe.libelle}}" alt="{{perso.classe.libelle}}" class="icone" ng-src="{{perso.classe.iconPath}}"></td>
+		<td>{{perso.level}}</td>
+		<td><a href="#/profile/addPersonnage/{{perso.id}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+		<td><a href="#/profile" ng-click="deletePerso(perso.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
+	</tr>
+</table>

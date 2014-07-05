@@ -1,0 +1,6 @@
+<div ng-if="currentUser">
+	<a title="Cliquez pour modifier" onbeforesave="updateCommentaire($data)" href="#" editable-text="participant.commentaire">{{ participant.commentaire || "n/a" }}</a>
+</div>
+<div ng-if="!currentUser">
+{{ participant.commentaire || "n/a" }}
+</div>

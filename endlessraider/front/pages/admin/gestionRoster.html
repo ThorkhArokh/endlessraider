@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Roster</div>
+	<div class="panel-body">
+		<div data-ng-repeat="(group, listPersos) in groupedPersos">
+			<h3>{{group}}</h3>
+			<table class="table">
+			<tbody>
+				<tr ng-repeat="perso in listPersos">
+					<td>{{perso.nom}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

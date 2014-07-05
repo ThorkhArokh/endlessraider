@@ -1,0 +1,6 @@
+
+<div ng-switch on="erreur.type">
+	<div ng-switch-when="warning" class="alert alert-warning">{{erreur.message}}</div>
+	<div ng-switch-when="error" class="alert alert-danger">{{erreur.message}}</div>
+	<div ng-switch-default class="alert alert-info">{{erreur.message}}</div>
+</div>

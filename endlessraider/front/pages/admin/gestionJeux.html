@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Jeux</div>
+	<div class="panel-body">
+		<table class="table">
+		<tbody>
+			<tr>
+				<th></th>
+				<th>Nom</th>
+				<th>Type</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="jeu in listJeux">
+				<td><img class="icone" ng-src="{{jeu.iconPath}}" /></td>
+				<td>{{jeu.nom}}</td>
+				<td>{{jeu.type.libelle}}</td>
+				<td><a title="Modifier le jeu" href="#/administrer/editJeu/{{jeu.id}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+				<td><a title="Supprimer le jeu" href="#/administrer" ng-click="deleteJeu(jeu.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
+			</tr>
+		</table>
+		<div ng-show="messageJeux.libelle" class="alert {{messageJeux.type}}">{{messageJeux.libelle}}</div>
+	</div>
+	<div class='panel-footer'>
+		<a href="#/administrer/editJeu">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter un jeu
+		</a> 
+	</div>
+</div>

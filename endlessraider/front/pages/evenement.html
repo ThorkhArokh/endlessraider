@@ -1,0 +1,48 @@
+<div id='evenementDetail' ng-controller="EvenementCtrl">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span><img ng-if="event.jeu.iconPath" class="icone" ng-src="{{event.jeu.iconPath}}"/> {{event.nom}}</span>
+	</div>
+	<div class="panel-body">
+		<span ng-hide="!event.imagePath"><img ng-if="event.imagePath" ng-src="{{event.imagePath}}"/></span>
+		<span ng-hide="!event.desc" ta-bind="text" ng-model="event.desc"></span>
+		
+		<p>Date : Le {{event.date}} <span ng-hide="!event.heure">à {{event.heure}}</span></p>
+		<p ng-hide="!event.nbrParticipantMax">Nombre de joueurs maximum : {{event.nbrParticipantMax}}</p>
+		
+		<!-- On inclus le bon template selon le type de jeu -->
+		<div ng-include="templateEvent.url+event.jeu.type.code+'/'+templateEvent.nom"></div>
+			
+		<div ng-show="currentUser && !isUserInscrit && !isEventPasse && isNbrMaxParticipantsAtteint" class="alert alert-warning">Le nombre de participants maximum est atteint pour cet événement. Vous ne pouvez vous inscrire qu'en file d'attente.</div>
+		<div ng-show="currentUser && !isUserInscrit && !isEventPasse && listPersoUser.length < 1" class="alert alert-warning">Vous n'avez aucun personnage correspondant aux critères de cet évènement. Cliquez <a href='#/profile/addPersonnage'>ici</a> pour vous en créer un.</div>
+		<div ng-if="currentUser && !isUserInscrit && !isEventPasse && listPersoUser.length > 0">
+			<form name="inscriptionForm" ng-submit="submit(inscription)" >
+				<div class="form-group">
+					<div class="input-group">
+						<label for="statut">Statut : <span>*</span></label>
+						<select ng-init="inscription.statut" required id="statut" name="statut" class="form-control" ng-model="inscription.statut" ng-options="statut.libelle for statut in listStatuts"></select>
+					</div>
+					<div ng-if="event.listRoles.length > 0" class="input-group">
+						<label for="role">Rôle : <span>*</span></label>
+						<select ng-init="inscription.role" required id="role" name="role" class="form-control" ng-model="inscription.role" ng-options="role.libelle for role in event.listRoles"></select>
+					</div>
+					<div class="input-group">
+						<label for="perso">Personnage : <span>*</span></label>
+						<select ng-init="inscription.personnage" required id="perso" name="perso" class="form-control" ng-model="inscription.personnage" ng-options="perso.nom for perso in listPersoUser"></select>
+					</div>
+					<div class="input-group">
+						<label for="commentaire">Commentaire : </label>
+						<input id="commentaire" name="commentaire" class="form-control" ng-model="inscription.commentaire" />
+					</div>
+				</div>
+				<button class="btn btn-default navbar-btn" ng-disabled="inscriptionForm.$invalid" type="submit" id="submit" value="Submit">S'inscrire</button>
+			</form>
+		</div>
+		<div ng-if="currentUser && isUserInscrit && !isEventPasse">
+			<button class="btn btn-default navbar-btn" type="button" ng-click="desinscription()">Se désinscrire</button>
+		</div>
+		<div ng-show="messageInscription.libelle" class="alert {{messageInscription.type}}">{{messageInscription.libelle}}</div>
+  </div>
+</div>
+
+</div>

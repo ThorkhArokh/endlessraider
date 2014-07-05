@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<span>Templates</span>
+	</div>
+	<div class="panel-body">
+		<div>
+			<label for="recherche">Rechercher : </label>
+			<input id="recherche" ng-model="queryTemplate">
+			<span ng-show="isAuthorized([userRoles.admin])">
+				<label for="filtreTemplateJeuTab">Filtrer sur le jeu : </label>
+				<select ng-model="filtreTemplateJeuTab" id="filtreTemplateJeuTab" ng-options="jeu.nom for jeu in listJeux">
+					<option value=''>Tout</option>
+				</select>
+			</span>
+		</div>
+		<table class="table">
+		<tbody>
+			<tr>
+				<th>Nom</th>
+				<th>Jeu</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="template in listTemplates | filtreEventParJeu:filtreTemplateJeuTab | filter : queryTemplate">
+				<td><a href="#/evenement/template/{{template.id}}">{{template.nom}}</a></td>
+				<td><img alt="{{template.jeu.nom}}" title="{{template.jeu.nom}}" class="icone" ng-src="{{template.jeu.iconPath}}" /></td>
+				<td><a title="Cr&eacute;er un &eacute;v&eacute;nement &agrave; partir du template" href="#/administrer/editEvent/template/{{template.id}}"><span class="glyphicon glyphicon-calendar"></span></a></td>
+				<td><a title="Modifier le template" href="#/administrer/editTemplate/{{template.id}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+				<td><a title="Supprimer le template" href="#/administrer" ng-click="deleteTemplate(template.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
+			</tr>
+		</table>
+		<div ng-show="messageTemplates.libelle" class="alert {{messageTemplates.type}}">{{messageTemplates.libelle}}</div>
+		</div>
+	<div class='panel-footer'>
+		<a href="#/administrer/editTemplate">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter un template
+		</a> 
+	</div>
+</div>

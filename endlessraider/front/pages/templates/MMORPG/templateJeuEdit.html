@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Liste des classes</div>
+	<div class="panel-body">
+		<table class="table">
+		<tbody>
+			<tr>
+				<th></th>
+				<th>Nom</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="classe in jeu.listClasses">
+				<td><img ng-show="classe.iconPath" class="icone" ng-src="{{classe.iconPath}}"></td>
+				<td>{{classe.libelle}}</td>
+				<td><a href="" ng-click="deleteClasse(classe)"><span class="glyphicon glyphicon-remove"></span></a></td>
+			</tr>
+		</table>
+	</div>
+	<div class='panel-footer'>
+		<div class="input-group">
+		<input class="form-control" type="text" id="classeToAddlbl" name="classeToAddlbl" placeholder="Mage, Guerrier..."
+			ng-model="classeToAdd.libelle" />
+		<img ng-show="classeToAdd.iconPath" class="icone" ng-src="{{classeToAdd.iconPath}}">
+		<input type="file" ng-file-select="onFileSelect($files, classeToAdd)" >
+		<a href='' ng-click="ajouterClasse(classeToAdd)">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter une classe
+		</a> 
+		</div>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">Liste des races</div>
+	<div class="panel-body">
+		<table class="table">
+		<tbody>
+			<tr>
+				<th></th>
+				<th>Nom</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="race in jeu.listRaces">
+				<td><img ng-show="race.iconPath" class="icone" ng-src="{{race.iconPath}}"></td>
+				<td>{{race.libelle}}</td>
+				<td><a href="" ng-click="deleteRace(race)"><span class="glyphicon glyphicon-remove"></span></a></td>
+			</tr>
+		</table>
+	</div>
+	<div class='panel-footer'>
+		<div class="input-group">
+		<input class="form-control" type="text" id="roleToAddlbl" name="raceToAddlbl" placeholder="Nain, elf ..."
+			ng-model="raceToAdd.libelle" />
+		<img ng-show="raceToAdd.iconPath" class="icone" ng-src="{{raceToAdd.iconPath}}">
+		<input type="file" ng-file-select="onFileSelect($files, raceToAdd)" >
+		<a href='' ng-click="ajouterRace(raceToAdd)">
+			<span class="glyphicon glyphicon-plus"></span> Ajouter une race
+		</a> 
+		</div>
+	</div>
+</div>

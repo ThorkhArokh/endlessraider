@@ -1,0 +1,66 @@
+<div class="panel panel-default" ng-controller="EvenementEditCtrl">
+	
+	<div ng-show="typeAdd" class="panel-heading">Ajouter un événement</div>
+	<div ng-show="!typeAdd" class="panel-heading">Editer un événement</div>
+	<div class="panel-body" >
+		<div ng-show="listJeux.length < 1" class="alert alert-warning">Aucun jeu n'est actuellement créé. Cliquez <a href='#/administrer/editJeu'>ici</a> pour vous en créer un. <i>NB : Vous ne pouvez pas créé d'événement sans le rattacher à un jeu.</i></div>
+		<div ng-if="listJeux.length > 0">
+		<form name="editEventForm" ng-submit="submit(event, htmlEditDesc)" >
+			<div class="form-group">
+				<div class="input-group">
+					<label for="nom">Nom :<span>*</span></label>
+					<div>
+					<input class="form-control" required type="text" id="nom" name="nom" placeholder="Nom"
+						ng-model="event.nom" />
+					</div>
+				</div>
+				<div class="input-group">
+					<label for="desc">Description :</label>
+					<div text-angular ng-model="htmlEditDesc"
+					ta-toolbar="[['h1','h2','h3','p', 'quote', 'insertLink'],
+					['bold','italics', 'underline'],
+					['ul','ol'],
+					['justifyLeft','justifyCenter', 'justifyRight'],
+					['html']]">
+					</div> 
+				</div>
+				<div class="input-group">
+					<label for="image">Image :</label>
+					<div>
+					<img ng-show="event.imagePath" ng-src="{{event.imagePath}}">
+					<input type="file" ng-file-select="onFileSelect($files)" >
+					<div ng-show="messageEventsImg.libelle" class="alert {{messageEventsImg.type}}">{{messageEventsImg.libelle}}</div>
+				</div>
+				<div class="input-group">
+					<label for="date">Date :<span>*</span></label>
+					<div>
+					<input class="form-control" required type="text" placeholder="jj/mm/aaaa"
+						ng-model="event.date" datepicker />
+					</div>
+					<label for="heure">heure :</label>
+					<div>
+					<input class="form-control" type="text" id="heure" name="heure" placeholder="hh:mm"
+						ng-model="event.heure" />
+					</div>
+				</div>
+				<div class="input-group">
+					<label for="image">Nombre maximum de participants :</label>
+					<div>
+					<input class="form-control" type="text" id="image" name="image" placeholder="1"
+						ng-model="event.nbrParticipantMax" />
+					</div>
+				</div>
+				<div ng-if="listJeux.length > 0" class="input-group">
+					<label for="jeu">Jeu:<span>*</span></label>
+					<select ng-init="event.jeu" required id="jeu" name="jeu" class="form-control" ng-model="event.jeu" ng-options="jeu.nom for jeu in listJeux | filter:{id : currentUserIdJeuAdmin}"></select>
+				</div>
+				<!-- On inclus le bon template selon le type de jeu -->
+				<div ng-include="templateEvent.url+event.jeu.type.code+'/'+templateEvent.nom"></div>
+			</div>
+		<a class="btn btn-default navbar-btn" id="retour" href="#/administrer/section/events" >Retour</a>
+		<button class="btn btn-default navbar-btn" ng-disabled="editEventForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>
+		</form>
+		<div ng-show="messageEvents.libelle" class="alert {{messageEvents.type}}">{{messageEvents.libelle}}</div>
+		</div>
+	</div>
+</div>

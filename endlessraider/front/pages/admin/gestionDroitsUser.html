@@ -1,0 +1,52 @@
+<div class="panel panel-default">
+	<div class="panel-heading">Utilisateurs</div>
+	<div class="panel-body">
+		<table class="table">
+		<tbody>
+			<tr>
+				<th>Login</th>
+				<th>Rôle</th>
+				<th>Jeux administrés</th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="user in listeUsers ">
+				<td>{{user.login}}</td>
+				<td>
+					<a ng-if="user.role.code != userRoles.admin" title="Modifier le rôle" 
+						onbeforesave="updateRoleUser($data, user.id)" href="#" 
+						editable-select="user.role"
+						e-ng-options="role.libelle for role in listeRolesUser" >
+						{{user.role.libelle}}
+					</a>
+					<span ng-if="user.role.code == userRoles.admin">{{user.role.libelle}}</span>
+				</td>
+				<td>
+					<ul class="nav nav-pills">
+					<li ng-repeat="jeu in user.listeJeuAdmin">
+						<img alt="{{jeu.nom}}" title="{{jeu.nom}}" class="icone" ng-src="{{jeu.iconPath}}" />
+					</li>
+					<ul>
+				</td>
+				<td>
+					<a ng-if="user.role.code == userRoles.admin || user.role.code == userRoles.editor" 
+						title="Ajouter un jeu à administrer" 
+						onbeforesave="addJeuAdminParUser($data, user.id)" href="#" 
+						editable-select="jeuToAddToListAdminJeuUser"
+						e-ng-options="jeu.nom for jeu in listJeux" >
+						<span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-tower"></span>
+					</a>
+				</td>
+				<td>
+					<a ng-if="user.role.code == userRoles.admin || user.role.code == userRoles.editor" 
+						title="Supprimer un jeu à administrer" 
+						onbeforesave="deleteJeuAdminParUser($data, user.id)" href="#" 
+						editable-select="jeuToDeleteToListAdminJeuUser"
+						e-ng-options="jeu.nom for jeu in user.listeJeuAdmin" >
+						<span class="glyphicon glyphicon-minus"></span><span class="glyphicon glyphicon-tower"></span>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

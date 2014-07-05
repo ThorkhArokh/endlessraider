@@ -1,0 +1,17 @@
+<div class="input-group" >
+	<label for="level">Level:</label>
+	<input class="form-control" type="text" id="level" placeholder="Level"
+		ng-model="personnage.level">
+</div>
+<div class="input-group">
+	<div ng-hide="personnage.jeu.listRaces.length < 1">
+		<label for="race">Race:</label>
+		<select id="race" class="form-control" ng-model="personnage.race" ng-options="race.libelle for race in personnage.jeu.listRaces"></select>
+	</div>
+</div>
+<div class="input-group">	
+	<div ng-hide="personnage.jeu.listClasses.length < 1">
+		<label for="classe">Classe:</label>
+		<select id="classe" class="form-control" ng-model="personnage.classe" ng-options="classe.libelle for classe in personnage.jeu.listClasses"></select>
+	</div>
+</div>

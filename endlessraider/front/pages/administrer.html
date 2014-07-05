@@ -1,0 +1,50 @@
+<div class="panel panel-default" ng-controller="AdministrerCtrl">
+	<div class="panel-heading">Administrer</div>
+	<div class="panel-body">
+	
+		<div class="btn-group">
+			<button class="btn btn-default" ng-click="selectMenu('events')">
+				<span class="glyphicon glyphicon-calendar"></span>
+				Events
+				<span class="badge">{{listEvents.length}}</span>
+			</button>
+			<button class="btn btn-default" ng-click="selectMenu('templates')">
+				<span class="glyphicon glyphicon-calendar"></span>
+				Templates
+				<span class="badge">{{listTemplates.length}}</span>
+			</button>
+			<button ng-show="isAuthorized([userRoles.admin])" class="btn btn-default" ng-click="selectMenu('jeux')">
+				<span class="glyphicon glyphicon-tower"></span>
+				Jeux
+				<span class="badge">{{listJeux.length}}</span>
+			</button>
+			<button class="btn btn-default" ng-click="selectMenu('personnages')">
+				<span class="glyphicon glyphicon-user"></span>
+				Roster
+				<span class="badge">{{listPersos.length}}</span>
+			</button>
+			<button ng-show="isAuthorized([userRoles.admin])" class="btn btn-default" ng-click="selectMenu('droits')">
+				<span class="glyphicon glyphicon-user"></span>
+				Gestion des droits
+				</span>
+			</button>
+		</div>
+		<div ng-switch on="showPanel" class="animate-switch-container" >
+			<div ng-switch-when="events" >
+				<div ng-include="'front/pages/admin/gestionEvents.html'"></div>
+			</div>
+			<div ng-show="isAuthorized([userRoles.admin])" ng-switch-when="jeux" >
+				<div ng-include="'front/pages/admin/gestionJeux.html'"></div>
+			</div>
+			<div ng-switch-when="personnages" >
+				<div ng-include="'front/pages/admin/gestionRoster.html'"></div>
+			</div>
+			<div ng-switch-when="templates" >
+				  <div ng-include="'front/pages/admin/gestionTemplates.html'"></div>
+			</div>
+			<div ng-show="isAuthorized([userRoles.admin])" ng-switch-when="droits" >
+				<div ng-include="'front/pages/admin/gestionDroitsUser.html'"></div>
+			</div>
+		</div>
+	</div>
+</div>

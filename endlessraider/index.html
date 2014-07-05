@@ -1,0 +1,104 @@
+<!doctype html>
+<html ng-app="endlessRaiderApp">
+<head>
+  <meta charset="utf-8">
+  <title>EndlessRaider</title>
+    <link rel="stylesheet" href="front/css/endlessRaider.css" >
+	<link rel="stylesheet" href="front/css/endlessRaiderAnim.css" >
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="front/css/xeditable.css" >
+	
+    <!-- JavaScript lib -->
+	<script src="front/lib/jquery-1.10.2.js"></script>
+	<script src="front/lib/jquery-ui-1.10.4.min.js"></script>
+	<script src="front/lib/angular-file-upload-shim.min.js"></script> 
+    <script src="front/lib/angular.js"></script>
+	<script src="front/lib/angular-route.js"></script>
+	<script src="front/lib/angular-resource.js"></script>
+	<script src="front/lib/angular-cookies.js"></script>
+	<script src="front/lib/angular-animate.min.js"></script>
+	<script src="front/lib/angular-file-upload.min.js"></script> 
+	<script type="text/javascript" src="front/lib/underscore-min.js"></script>
+	<script type="text/javascript" src="front/lib/textAngular.min.js"></script> 
+	<script type="text/javascript" src="front/lib/textAngular-sanitize.min.js"></script> 
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="front/lib/xeditable.min.js"></script>
+	
+	<!-- JavaScript application -->
+	<script src="front/js/endlessRaider.js"></script>
+	<script src="front/js/app.js"></script>
+    <script src="front/js/controllers/controller.js"></script>
+	<script src="front/js/controllers/adminController.js"></script>
+	<script src="front/js/controllers/eventController.js"></script>
+	<script src="front/js/controllers/templateController.js"></script>
+	<script src="front/js/controllers/jeuController.js"></script>
+	<script src="front/js/controllers/profilController.js"></script>
+	<script src="front/js/services/service.js"></script>
+	<script src="front/js/services/eventService.js"></script>
+	<script src="front/js/services/jeuService.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+  
+  <div id='wrapper' >
+        <div class="page-header">
+            <h1>EndlessRaider <small>Version ALPHA</small></h1>
+        </div>
+		
+		<div ng-if="currentUser">Welcome, {{ currentUser }}</div>
+        <nav id='menu' class="navbar navbar-default" role="navigation">
+        <div  >
+            <ul class="nav nav-pills navbar-right">
+				<li ng-class="menuClass('accueil')">
+                    <a href="#/accueil" title="Accueil">
+                        <span class="glyphicon glyphicon-home"></span>
+                    </a>
+                </li>
+                <li ng-class="menuClass('calendrier')">
+                    <a href="#/calendrier">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </a>
+                </li>
+                <li ng-if="currentUser" ng-class="menuClass('profile')" title="Profil">
+                    <a href="#/profile">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </li>
+				<li ng-if="isAuthorized([userRoles.admin, userRoles.editor])">
+					<a title="Administrer" href="#/administrer">
+						<span class="glyphicon glyphicon-wrench">
+					</a>
+				</li>
+				<li ng-if="isAuthorized([userRoles.admin, userRoles.editor])" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="">
+						<span class="glyphicon glyphicon-tasks">
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#/administrer/editEvent">Créer un événement</a></li>
+						<li ng-if="isAuthorized(userRoles.admin)"><a href="#/administrer/editJeu">Ajouter un jeu</a></li>
+					</ul>
+                </li>
+				<li ng-if="!currentUser">
+                    <a href="#/login" title="Connexion">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                    </a>
+                </li>
+				<li ng-if="currentUser">
+                    <a href="#" ng-click="logout()" title="Déconnexion">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </nav>
+        
+	<div ng-view></div>	
+	
+	<footer>
+		Copyrights 2014 EndlessRaider - tous droits réservés.
+	</footer>
+</body>
+</html>

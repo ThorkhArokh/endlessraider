@@ -1,0 +1,20 @@
+<p>
+	<span ng-hide="!template.levelMin">Level minimum : {{template.levelMin}}</span>
+	<span ng-hide="!template.levelMax">Level maximum : {{template.levelMax}}</span>
+</p>
+<div class="panel-heading">Liste des rôles</div>
+<div class="panel-body">
+	<table class="table">
+	<tbody>
+		<tr>
+			<th>Libellé</th>
+			<th>Nombre maximum d'inscriptions</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="role in template.listRoles">
+			<td>{{role.libelle}}</td>
+			<td>{{role.nbrVoulu}}</td>
+			<td><a href="" ng-click="deleteRole(role)"><span class="glyphicon glyphicon-remove"></span></a></td>
+		</tr>
+	</table>
+</div>
