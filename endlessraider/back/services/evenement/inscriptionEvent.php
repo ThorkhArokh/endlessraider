@@ -18,9 +18,12 @@ if(isset($inscriptionParticipant)){
 		// On vérifie que l'évent existe
 		if(isset($event)) {
 			if($event->isNbrMaxParticipantsAtteint()) {
-				// On inscrit l'utilisateur au statut en attente
-				$inscriptionParticipant->statut = RefStatut::getStatut(CODE_STATUT_WAIT);
-				$resultat['warning'] = "Votre statut a été basculé à '".RefStatut::getStatut(CODE_STATUT_WAIT)->libelle."' car le nombre de participants maximum a été atteint.";
+				// On vérifie que le statut voulu est disponible sinon on ne fait rien de spécial
+				if($inscriptionParticipant->statut->code == CODE_STATUT_DISPO) {
+					// On inscrit l'utilisateur au statut en attente
+					$inscriptionParticipant->statut = RefStatut::getStatut(CODE_STATUT_WAIT);
+					$resultat['warning'] = "Votre statut a été basculé à '".RefStatut::getStatut(CODE_STATUT_WAIT)->libelle."' car le nombre de participants maximum a été atteint.";
+				}
 			} else {
 				if($inscriptionParticipant->statut->code == CODE_STATUT_DISPO
 					&& isset($inscriptionParticipant->role) && $event->isRolePein($inscriptionParticipant->role) ) {
