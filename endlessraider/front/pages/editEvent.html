@@ -52,10 +52,10 @@
 				</div>
 				<div ng-if="listJeux.length > 0" class="input-group">
 					<label for="jeu">Jeu:<span>*</span></label>
-					<select ng-init="event.jeu" required id="jeu" name="jeu" class="form-control" ng-model="event.jeu" ng-options="jeu.nom for jeu in listJeux | filter:{id : currentUserIdJeuAdmin}"></select>
+					<select ng-init="event.jeu" required id="jeu" name="jeu" class="form-control" ng-model="event.jeu" ng-options="jeu.nom for jeu in listJeux"></select>
 				</div>
 				<!-- On inclus le bon template selon le type de jeu -->
-				<div ng-include="templateEvent.url+event.jeu.type.code+'/'+templateEvent.nom"></div>
+				<div ng-if="event.jeu.type.code" ng-include="templateEvent.url+event.jeu.type.code+'/'+templateEvent.nom"></div>
 			</div>
 		<a class="btn btn-default navbar-btn" id="retour" href="#/administrer/section/events" >Retour</a>
 		<button class="btn btn-default navbar-btn" ng-disabled="editEventForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>

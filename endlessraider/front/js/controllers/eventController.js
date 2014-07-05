@@ -193,17 +193,14 @@ function(TEMPLATE, $scope, Evenement, $routeParams, $timeout) {
 }]);
 
 // Définition du contrôleur pour la création/modification d'un événement
-endlessRaiderController.controller('EvenementEditCtrl', ['TEMPLATE', 'Session', '$scope', 'Evenement', 'Jeu', '$routeParams', '$timeout', '$location', '$upload', 
-function(TEMPLATE, Session, $scope, Evenement, Jeu, $routeParams, $timeout, $location, $upload) {
+endlessRaiderController.controller('EvenementEditCtrl', ['TEMPLATE', '$scope', 'Evenement', 'Jeu', '$routeParams', '$timeout', '$location', '$upload', 
+function(TEMPLATE, $scope, Evenement, Jeu, $routeParams, $timeout, $location, $upload) {
 	$scope.messageEvents = {};
 	$scope.messageEventsImg = {};
 	$scope.htmlEditDesc = '';
 	$scope.templateEvent = {};
 	$scope.templateEvent.url = TEMPLATE.path;
 	$scope.templateEvent.nom = TEMPLATE.editEvent+TEMPLATE.extention;
-	if(Session.idJeuAdmin) {
-		$scope.currentUserIdJeuAdmin = Session.idJeuAdmin;
-	}
 	
 	// On récupère la liste des jeux disponibles
 	Jeu.getList().then(function(result) {

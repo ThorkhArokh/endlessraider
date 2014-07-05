@@ -36,6 +36,39 @@ function getListJeux() {
 	return $listJeux;
 }
 
+// Fonction qui retourne la liste des jeux disponibles
+function getListJeuxByIdUser($idUser) {
+	$listJeux = array();
+
+	// on créé la requête SQL
+	$connexionBDD = getConnexionBDD();
+	$sqlQuery = $connexionBDD->prepare("SELECT j.id , j.nom, j.iconPath,
+		j.idTypeJeu, t.code as codeTypeJeu, t.libelle as libelleTypeJeu
+		FROM er_jeu j, er_typejeu t, er_usergestionjeu g
+		WHERE j.idTypeJeu = t.id
+		AND j.id = g.idJeu 
+		AND g.idUser = :idUser");
+
+	$sqlQuery->execute(array('idUser' => $idUser));
+	while($lignes=$sqlQuery->fetch(PDO::FETCH_OBJ))
+	{
+		// On créé le type du jeu
+		$typeJeu = new TypeJeu($lignes->idTypeJeu, $lignes->codeTypeJeu, $lignes->libelleTypeJeu);
+		// On créé le jeu associé
+		$jeu = new Jeu($lignes->nom, $typeJeu,  $lignes->iconPath);
+		$jeu->id = $lignes->id;
+
+		// On récupère les classes associées au jeu
+		$jeu->listClasses = getClassesByIdJeu($jeu->id);
+		// On récupère les races associées au jeu
+		$jeu->listRaces = getRacesByIdJeu($jeu->id);
+
+		$listJeux[] = $jeu;
+	}
+
+	return $listJeux;
+}
+
 // Fonction qui retourne le jeu correspondant à l'identifiant donné
 function getJeuById($idJeu) {
 	// on créé la requête SQL

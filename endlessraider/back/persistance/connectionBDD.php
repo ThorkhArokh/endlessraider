@@ -1,30 +1,5 @@
 <?php
 	$connexion = false;
-    
-	/*
-    function getConnexionBDD()
-    {
-        global $g_link;
-        if( $g_link )
-            return $g_link;
-			
-		$server = 'localhost';
-		$login='root';
-		$pass='';
-		$db='endlessraider';
-		
-        $g_link = mysql_connect($server, $login, $pass) or die('Could not connect to server.' );
-        mysql_select_db($db, $g_link) or die('Could not select database.');
-        return $g_link;
-    }
-   
-    function closeConnexionBDD()
-    {
-        global $g_link;
-        if( $g_link != false )
-            mysql_close($g_link);
-        $g_link = false;
-    } */
 	
 	// Fonction qui créé une connexion à la base de données via l'interface PDO
     function getConnexionBDD()
