@@ -1,44 +1,44 @@
 <div id='calendrier'>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <ul class="pager">
-                    <li class="previous"><a href="#/calendrier/{{anneeEnCours-1}}">&larr; Older</a></li>
-                    <li><b>{{anneeEnCours}}</b></li>
-                    <li class="next"><a href="#/calendrier/{{(anneeEnCours)+1}}">Newer &rarr;</a></li>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <ul class="pager">
+                <li class="previous"><a href="#/calendrier/{{anneeEnCours-1}}">&larr; Older</a></li>
+                <li><b>{{anneeEnCours}}</b></li>
+                <li class="next"><a href="#/calendrier/{{(anneeEnCours)+1}}">Newer &rarr;</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="months"> 
+                <ul class="nav nav-pills nav-justified">
+					<li ng-repeat="mois in moisList" ng-class="moisClass('calendrier/{{anneeEnCours}}/{{mois.ind}}')">
+					  <a href='#/calendrier/{{anneeEnCours}}/{{mois.ind}}' >{{mois.libelle}}</a>
+					</li>
                 </ul>
             </div>
-            <div class="panel-body">
-                <div class="months"> 
-                    <ul class="nav nav-pills nav-justified">
-						<li ng-repeat="mois in moisList" ng-class="moisClass('calendrier/{{anneeEnCours}}/{{mois.ind}}')">
-						  <a href='#/calendrier/{{anneeEnCours}}/{{mois.ind}}' >{{mois.libelle}}</a>
-						</li>
-                    </ul>
-                </div>
-            </div>
-	
-			<table class="table">
-			<tbody>
-				<tr>
-					<th ng-repeat="jour in joursSemaineList" >
-						{{jour.libelle}}
-					</th>
-				</tr>
-				
-				<tr ng-repeat="semaine in dates" >
-					<td ng-repeat="date in semaine">
-					<span>{{date.jour}}</span>
-					<span ng-if="date.jour && isAuthorized('admin')">
-						<a href="#/administrer/editEvent/date/{{date.jour}}/{{date.mois}}/{{date.annee}}" title="Ajouter un &eacute;v&eacute;nement &agrave; cette date"><span class="glyphicon glyphicon-plus"></span></a>
-					</span>
-					<div ng-repeat="event in date.listeEvent">
-						<a href="#/evenement/{{event.id}}" title="{{event.nom}}">
-                            <img width='50px' height='50px' ng-src="{{event.jeu.iconPath}}" ALT="{{event.nom}}" />
-                        </a>
-					</div>
-					</td>
-				</tr>
-			</tbody>
-			</table>
         </div>
+
+		<table class="table">
+		<tbody>
+			<tr>
+				<th ng-repeat="jour in joursSemaineList" >
+					{{jour.libelle}}
+				</th>
+			</tr>
+			
+			<tr ng-repeat="semaine in dates" >
+				<td class="jour" ng-repeat="date in semaine">
+				<span>{{date.jour}}</span>
+				<span ng-if="date.jour && isAuthorized('admin')">
+					<a href="#/administrer/editEvent/date/{{date.jour}}/{{date.mois}}/{{date.annee}}" title="Ajouter un &eacute;v&eacute;nement &agrave; cette date"><span class="glyphicon glyphicon-plus addEvent">+</span></a>
+				</span>
+				<div ng-repeat="event in date.listeEvent" class="event">
+					<a href="#/evenement/{{event.id}}" title="{{event.nom}}">
+                        <img class="gamePicto" ng-src="{{event.jeu.iconPath}}" ALT="{{event.nom}}" />
+                    </a>
+				</div>
+				</td>
+			</tr>
+		</tbody>
+		</table>
     </div>
+</div>

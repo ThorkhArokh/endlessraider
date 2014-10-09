@@ -2,8 +2,8 @@
 	<div class="panel-heading">
 		<span>Events</span>
 	</div>
-	<div class="panel-body">
-		<div>
+	<div class="panel-body events">
+		<div class="searchForm">
 			<label for="recherche">Rechercher : </label>
 			<input id="recherche" ng-model="query" >
 			<span ng-show="isAuthorized([userRoles.admin])">
@@ -21,22 +21,23 @@
 				<th>Nom</th>
 				<th>Date</th>
 				<th>Jeu</th>
-				<th></th>
-				<th></th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
+				<th>Enregistrer</th>
 			</tr>
 			<tr ng-repeat="event in listEvents | filtreEventParJeu:filtreEventJeuTab | filter : query">
 				<td><a href="#/evenement/{{event.id}}">{{event.nom}}</a></td>
 				<td><span>{{event.date}}</span> <span ng-show="event.heure"> - {{event.heure}}</span></td>
 				<td><img alt="{{event.jeu.nom}}" title="{{event.jeu.nom}}" class="icone" ng-src="{{event.jeu.iconPath}}" /></td>
-				<td><a title="Modifier l'&eacute;v&eacute;nement" href="#/administrer/editEvent/{{event.id}}"><span class="glyphicon glyphicon-edit"></span></a></td>
-				<td><a title="Supprimer l'&eacute;v&eacute;nement" href="#/administrer" ng-click="deleteEvent(event.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
-				<td><a title="Enregistrer comme template" href="#/administrer" ng-click="saveEventAsTemplate(event.id)"><span class="glyphicon glyphicon-floppy-save"></span></a></td>
+				<td><a title="Modifier l'&eacute;v&eacute;nement" href="#/administrer/editEvent/{{event.id}}"><img src="/endlessraider/front/images/pictos/picto-edit.png"></a></td>
+				<td><a title="Supprimer l'&eacute;v&eacute;nement" href="#/administrer" ng-click="deleteEvent(event.id)"><img src="/endlessraider/front/images/pictos/picto-delete.png"></a></td>
+				<td><a title="Enregistrer comme template" href="#/administrer" ng-click="saveEventAsTemplate(event.id)"><img src="/endlessraider/front/images/pictos/picto-add.png"></a></td>
 			</tr>
 		</table>
 		<div ng-show="messageEvents.libelle" class="alert {{messageEvents.type}}">{{messageEvents.libelle}}</div>
 	</div>
 	<div class='panel-footer'>
-		<a href="#/administrer/editEvent">
+		<a class="button" href="#/administrer/editEvent">
 			<span class="glyphicon glyphicon-plus"></span> Ajouter un événement
 		</a> 
 	</div>

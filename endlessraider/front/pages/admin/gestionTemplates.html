@@ -2,8 +2,8 @@
 	<div class="panel-heading">
 		<span>Templates</span>
 	</div>
-	<div class="panel-body">
-		<div>
+	<div class="panel-body templates">
+		<div class="searchForm">
 			<label for="recherche">Rechercher : </label>
 			<input id="recherche" ng-model="queryTemplate">
 			<span ng-show="isAuthorized([userRoles.admin])">
@@ -18,21 +18,22 @@
 			<tr>
 				<th>Nom</th>
 				<th>Jeu</th>
-				<th></th>
-				<th></th>
+				<th>Créer un événement</th>
+				<th>Modifier le template</th>
+				<th>Supprimer le template</th>
 			</tr>
 			<tr ng-repeat="template in listTemplates | filtreEventParJeu:filtreTemplateJeuTab | filter : queryTemplate">
 				<td><a href="#/evenement/template/{{template.id}}">{{template.nom}}</a></td>
 				<td><img alt="{{template.jeu.nom}}" title="{{template.jeu.nom}}" class="icone" ng-src="{{template.jeu.iconPath}}" /></td>
-				<td><a title="Cr&eacute;er un &eacute;v&eacute;nement &agrave; partir du template" href="#/administrer/editEvent/template/{{template.id}}"><span class="glyphicon glyphicon-calendar"></span></a></td>
-				<td><a title="Modifier le template" href="#/administrer/editTemplate/{{template.id}}"><span class="glyphicon glyphicon-edit"></span></a></td>
-				<td><a title="Supprimer le template" href="#/administrer" ng-click="deleteTemplate(template.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
+				<td><a title="Cr&eacute;er un &eacute;v&eacute;nement &agrave; partir du template" href="#/administrer/editEvent/template/{{template.id}}"><img src="/endlessraider/front/images/pictos/picto-add.png"></a></td>
+				<td><a title="Modifier le template" href="#/administrer/editTemplate/{{template.id}}"><img src="/endlessraider/front/images/pictos/picto-edit.png"></a></td>
+				<td><a title="Supprimer le template" href="#/administrer" ng-click="deleteTemplate(template.id)"><img src="/endlessraider/front/images/pictos/picto-delete.png"></a></td>
 			</tr>
 		</table>
 		<div ng-show="messageTemplates.libelle" class="alert {{messageTemplates.type}}">{{messageTemplates.libelle}}</div>
 		</div>
 	<div class='panel-footer'>
-		<a href="#/administrer/editTemplate">
+		<a class="button" href="#/administrer/editTemplate">
 			<span class="glyphicon glyphicon-plus"></span> Ajouter un template
 		</a> 
 	</div>

@@ -1,17 +1,21 @@
-body {
-    background: none repeat scroll 0% 0% rgb(241, 241, 241);
-	font: 0.9em/1.4em arial,sans-serif;
-	color: rgb(102, 102, 102);
-	margin: 0px;
-}
+/* Reset */
+.clearfix:before, .clearfix:after { content: " "; display: table;}
+.clearfix:after { clear: both;}
+.clearfix { *zoom: 1;}
+ul, ol, li, h1, h2, h3, h4, h5, p, a, input, figure, img, form, fieldset { margin: 0; padding: 0; list-style: none; text-decoration: none; outline: none; border: none;}
+h1, h2, h3, h4, h5 { padding: 0 0 0 0; margin: 0 0 0 0; font-weight: bold; color: #4D4D4D; font-family: 'Open Sans Condensed'; clear: both;}
+p { padding: 5px 0 10px 0; text-align: justify;}
+a { color: #333;}
+a:hover { color: #000;}
+hr { background: #f1f1f1; margin: 0 0 30px 0; border: none; height: 1px;}
 
-footer {
-    background: none repeat scroll 0% 0% rgb(153, 153, 153);
-    color: rgb(241, 241, 241);
-    text-align: center;
-    font-size: 0.8em;
-    font-style: normal;
-}
+/* Global */
+body { background: #f1f1f1; font: 0.9em/1.4em arial, sans-serif; color: #666; margin: 0;}
+.tt1 { font-size: 1.6em; margin: 0 0 15px 0; text-shadow: 1px 1px 1px #C5C5C5;}
+.tt2 { font-size: 1.3em; margin: 10px 0; border-left: solid 5px #8a3232; padding: 0 0 0 5px; color: #8a3232;}
+.tt3 { font-size: 1.1em;}
+
+#footer { margin: auto;color: #f1f1f1;background-color: #6A2525;}
 
 .drop-box {
     background: none repeat scroll 0% 0% rgb(248, 248, 248);
@@ -23,15 +27,347 @@ footer {
 }
 
 .icone {
-	width: 20px;
-    height: 20px;
+	width: 25px;
+    height: 25px;
+    vertical-align: middle;
 }
 
 .ta-editor {
     min-height: 300px;
     height: auto;
+    background: #fff;
     overflow: auto;
     font-family: inherit;
     font-size: 100%;
     margin:20px 0;
 }
+.panel-heading {
+    clear: both;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* Global */
+.page-header {
+    width: 980px;
+    height: 80px;
+    line-height: 80px;
+    margin: 0 auto;
+}
+#main {
+    width: 950px;
+    min-height: 500px;
+    margin: 0 auto 20px auto;
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 0 5px #ccc;
+    border-bottom: solid 3px #8a3232;
+}
+#menu {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #8a3232;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+/* Nav */
+#menu .ulWrapper {
+    width: 980px;
+    margin: 0 auto;
+}
+#menu .nav, #menu .defaultNav {
+    float: left;
+}
+#menu li {
+    display: inline-block;
+    font-family: 'Open Sans Condensed';
+    font-size: 1.2em;
+}
+#menu a {
+    color: #f1f1f1;
+    display: block;
+    padding: 0 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#menu a:hover {
+    background: #660000;
+}
+li:active {
+    background: #660000;
+}
+li:active a {
+    background: #660000;
+}
+#menu .dropdown-menu {
+    width: auto;
+}
+#menu .dropdown-menu li {
+    font-size: 1em;
+}
+
+/* Form */
+.button {
+    background: rgba(138, 50, 50, 0.75);
+    color: #fff;
+    padding: 10px 20px;
+    border: 0 none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px 0;
+    font-size: 1em;
+    line-height: 1;
+}
+.button:hover {
+    background: rgba(138, 50, 50, 1);
+    color: #fff;
+    padding: 10px 20px;
+}
+.link {
+    color: rgba(138, 50, 50, 1);
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0 0 15px 0;
+    display: inline-block;
+}
+.link:hover {
+    color: rgba(138, 50, 50, 1);
+    text-decoration: underline;
+}
+.input-group {
+    vertical-align: middle;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f1f1f1;
+}
+label {
+    font-size: 1em;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    font-weight: bold;
+}
+input {
+    height: 30px;
+    font-size: 1em;
+    padding: 0 0 0 5px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+}
+input[type=text]:hover, input[type=text]:active {
+    border: 1px solid rgba(138, 50, 50, 1);
+}
+input[type=text] {
+    border: 1px solid #ccc;
+    background: #fff; 
+}
+input[type=file] {
+    vertical-align: baseline;
+}
+select {
+    height: 30px;
+    margin: 0 10px 0 0;
+    outline: none;
+}
+select:hover, select:active {
+    border: 1px solid rgba(138, 50, 50, 1);
+
+}
+.searchForm {
+    background: #f1f1f1; 
+    padding: 10px;
+    margin: 0 0 10px 0;
+}
+
+.pager {
+    background: #f1f1f1;
+    text-align: center;
+}
+.pager li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.months {
+    background: #f1f1f1;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px #fff;
+}
+.months li {
+    display: inline-block;
+    margin: 5px 0;
+}
+.months li.active, .months li:hover {
+    background: rgba(138, 50, 50, 1);
+}
+.months li a{
+    padding: 5px 17px;
+    display: inline-block;
+}
+.months li.active a {
+    color: #fff;
+}
+.months li:hover a {
+    color: #fff;
+}
+
+#calendrier .table {
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+#calendrier .table th {
+    width: 135px;
+    background: #DBDBDB;
+}
+#calendrier .table tr.ng-scope {
+    height: 100px;
+    background: #f1f1f1;
+}
+#calendrier .table .jour {
+    text-align: left;
+    vertical-align: top;
+    position: relative;
+}
+#calendrier .table .jour:hover {
+    background: #ccc;
+}
+#calendrier .table .jour .gamePicto {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+#calendrier .addEvent {
+    display: none;
+    font-size: 1em;
+    text-align: center;
+    z-index: 10;
+    color: #333;
+    font-weight: bold;
+    font-family: arial, sans-serif;
+}
+#calendrier .table .jour:hover .addEvent {
+    display: inline-block;
+}
+
+/* Add Event */
+.form-group {
+    display: table;
+    width: 100%;
+}
+.btn-group {
+    float: left;
+}
+.ta-editor {
+    border: 1px solid #ccc;
+    clear: both;
+    outline: none;
+}
+.gameImg {
+    vertical-align: middle;
+}
+
+/* Profil */
+#profil .game {
+    float: left;
+}
+#profil .game .btn {
+    padding: 5px 10px;
+    background: #f1f1f1;
+    border: none;
+    cursor: pointer;
+}
+#profil .game .btn img {
+    width: 25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#profil .game .btn span {
+    display: inline-block;
+    vertical-align: middle;
+}
+table {
+    width: 100%;
+}
+th {
+    width: 15%;
+    background: #ccc;
+    margin: 1px;
+}
+td {
+    background: #f1f1f1;
+    margin: 1px;
+    text-align: center;
+}
+/*#profil img {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}*/
+
+/* roster */
+.panel .roster h3 {
+    background: #ccc;
+    margin: 20px 0 0 0;
+    padding: 3px 10px;
+}
+
+/*Footer*/
+#footerNav { width: 980px;margin: 0 auto;padding: 30px 0;border-bottom: 1px solid #975555;}
+#footerNav li { font-family: 'Open Sans Condensed'; display: inline-block;text-align: left;font-weight: 700;font-size: 1.1em;text-transform: uppercase;vertical-align: top;line-height: 1.3; margin: 0 4% 0 0;line-height: 2;}
+#footerNav .ssMenu li { display: block;text-transform: none;font-size: 0.8em;font-weight: normal;width: 100%; font-family: Arial, sans-serif; margin: 0;}
+
+#footerNav a { color: #fff;}
+#footerNav .ssMenu a { color: #BCBCBC; padding: 5px 0;}
+#footerNav .ssMenu a:hover { border-bottom: dotted 1px #f1f1f1;}
+
+.socialLinks {
+    width: 980px;
+    height: 80px;
+    line-height: 80px;
+    vertical-align: middle;
+    margin: 0 auto;
+    padding: 10px 0;
+    border-bottom: 1px solid #975555;
+}
+.socialLinks h3 {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0 40px 0 0;
+}
+.socialLinks ul {
+    display: inline-block;
+    vertical-align: middle;
+}
+.socialLinks li {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    margin: 0 20px 0 0;
+}
+.socialLinks img {
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+}
+.socialLinks a {
+    color: #fff;
+}
+.socialLinks span {
+    margin: 0 10px;
+}
+
+
+address { background: #6A2525; color: #f1f1f1; text-align: center; font-size: 0.8em; font-style: normal; padding: 10px 0;}

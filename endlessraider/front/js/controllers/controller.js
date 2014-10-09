@@ -2,7 +2,10 @@
 var endlessRaiderController = angular.module('endlessRaiderController', []);
 
 // Controller permettant de gérer les class css des liens actifs suite au choix utilisateur
-endlessRaiderController.controller("MainCtrl", function(USER_ROLES, $scope, $rootScope, $location, AuthService, $cookies) {
+endlessRaiderController.controller("MainCtrl", function(Session, USER_ROLES, $scope, $rootScope, $location, AuthService, $cookies) {
+	AuthService.getSession();
+	$rootScope.currentUser = Session.userId;
+	
 	$scope.userRoles = USER_ROLES;
 	$scope.menuClass = function(page) {
 		var current = $location.path().substring(1);
@@ -28,7 +31,7 @@ endlessRaiderController.controller("MainCtrl", function(USER_ROLES, $scope, $roo
 	};
 });
 
-endlessRaiderController.controller('LoginCtrl', function ($scope, $rootScope, AUTH_EVENTS, AuthService, $location, $cookies, $timeout) {
+endlessRaiderController.controller('LoginCtrl', function (Session, $scope, $rootScope, AUTH_EVENTS, AuthService, $location, $timeout) {
   $scope.credentials = {
     username: '',
     password: ''
@@ -38,7 +41,7 @@ endlessRaiderController.controller('LoginCtrl', function ($scope, $rootScope, AU
     AuthService.login(credentials).then(
 	function() {
 		$location.path( "/calendrier" );
-		$rootScope.currentUser = $cookies.login;
+		$rootScope.currentUser = Session.userId;
     }, 
 	function (reason) {
 		$rootScope.currentUser = null;

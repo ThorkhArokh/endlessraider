@@ -2,9 +2,9 @@
         style="display:none"></iframe>
 
 <div class="panel panel-default">
-	<div class="panel-heading">Connexion</div>
+	<h1 class="panel-heading">Connexion</h1>
 	<div class="panel-body">
-		<form name="loginForm"
+		<form id="loginForm" name="loginForm"
 			  action="front/pages/sink.html" target="sink" method="post"
 			  ng-submit="login(credentials)"
 			  novalidate form-autofill-fix>
@@ -20,7 +20,7 @@
 						 ng-model="credentials.password">
 				</div>
 			</div>
-			<button class="btn btn-default navbar-btn" type="submit">Login</button>
+			<button class="btn button btn-default navbar-btn" type="submit">Connexion</button>
 			<div ng-show="message.libelle" class="alert {{message.type}}">{{message.libelle}}</div>
 		</form>
 	</div>

@@ -1,28 +1,30 @@
-<div class="panel panel-default">
-	<div class="panel-heading">Profile de {{ user.login }} [<small>{{ user.role.libelle }}</small>]</div>
-	<div class="panel-body">
-		<div class="panel panel-default">
-			<div class="panel-heading">Personnages</div>
-			<div class="panel-body">
-				<div ng-show="message.libelle" class="alert {{message.type}}">{{message.libelle}}</div>
-				<div class="btn-group" ng-repeat="jeu in listJeux">
-					<button class="btn btn-default" ng-click="selectMenu(jeu)">
-						<img class="icone" ng-src="{{jeu.iconPath}}" />
-						{{jeu.nom}}
-						<span class="badge">{{listEvents.length}}</span>
-					</button>
+<div id='profil'>
+	<div class="panel panel-default">
+		<div class="panel-heading tt1">Profile de {{ user.login }} [<small>{{ user.role.libelle }}</small>]</div>
+		<div class="panel-body">
+			<div class="panel panel-default">
+				<div class="panel-heading tt2">Personnages</div>
+				<div class="panel-body">
+					<div ng-show="message.libelle" class="alert {{message.type}}">{{message.libelle}}</div>
+					<div class="btn-group game" ng-repeat="jeu in listJeux">
+						<button class="btn btn-default" ng-click="selectMenu(jeu)">
+							<img class="icone" ng-src="{{jeu.iconPath}}" />
+							{{jeu.nom}}
+							<span class="badge">{{listEvents.length}}</span>
+						</button>
+						
+						
+					</div>
 					
-					
-				</div>
-				
-				<!-- On inclus le bon template selon le type de jeu -->
-				<div ng-include="templateProfilePerso.url+showPanel.type.code+'/'+templateProfilePerso.nom"></div>
+					<!-- On inclus le bon template selon le type de jeu -->
+					<div ng-include="templateProfilePerso.url+showPanel.type.code+'/'+templateProfilePerso.nom"></div>
 
-			</div>
-			<div class='panel-footer'>
-				<a href="#/profile/addPersonnage">
-					<span class="glyphicon glyphicon-plus"></span> Ajouter un personnage
-				</a> 
+				</div>
+				<div class='panel-footer'>
+					<a class="button" href="#/profile/addPersonnage">
+						<span class="glyphicon glyphicon-plus"></span> Ajouter un personnage
+					</a> 
+				</div>
 			</div>
 		</div>
 	</div>

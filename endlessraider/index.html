@@ -3,13 +3,20 @@
 <head>
   <meta charset="utf-8">
   <title>EndlessRaider</title>
-    <link rel="stylesheet" href="front/css/endlessRaider.css" >
 	<link rel="stylesheet" href="front/css/endlessRaiderAnim.css" >
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+   	<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="front/css/xeditable.css" >
+    <link rel="stylesheet" href="front/css/endlessRaider.css" >
+
+    <!-- fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+	<link rel="shortcut icon" type="image/x-icon" href="http://endlessfr.com/plugins/endlessfr/img/favicon.png" />
 	
     <!-- JavaScript lib -->
 	<script src="front/lib/jquery-1.10.2.js"></script>
@@ -43,62 +50,126 @@
 <body ng-controller="MainCtrl">
   
   <div id='wrapper' >
-        <div class="page-header">
+        <header class="page-header">
             <h1>EndlessRaider <small>Version ALPHA</small></h1>
-        </div>
+        </header>
 		
-		<div ng-if="currentUser">Welcome, {{ currentUser }}</div>
         <nav id='menu' class="navbar navbar-default" role="navigation">
-        <div  >
-            <ul class="nav nav-pills navbar-right">
-				<li ng-class="menuClass('accueil')">
-                    <a href="#/accueil" title="Accueil">
-                        <span class="glyphicon glyphicon-home"></span>
-                    </a>
-                </li>
-                <li ng-class="menuClass('calendrier')">
-                    <a href="#/calendrier">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </a>
-                </li>
-                <li ng-if="currentUser" ng-class="menuClass('profile')" title="Profil">
-                    <a href="#/profile">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </a>
-                </li>
-				<li ng-if="isAuthorized([userRoles.admin, userRoles.editor])">
-					<a title="Administrer" href="#/administrer">
-						<span class="glyphicon glyphicon-wrench">
-					</a>
-				</li>
-				<li ng-if="isAuthorized([userRoles.admin, userRoles.editor])" class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="">
-						<span class="glyphicon glyphicon-tasks">
-						<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#/administrer/editEvent">Créer un événement</a></li>
-						<li ng-if="isAuthorized(userRoles.admin)"><a href="#/administrer/editJeu">Ajouter un jeu</a></li>
-					</ul>
-                </li>
-				<li ng-if="!currentUser">
-                    <a href="#/login" title="Connexion">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                    </a>
-                </li>
-				<li ng-if="currentUser">
-                    <a href="#" ng-click="logout()" title="Déconnexion">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        	<div class="ulWrapper">
+	            <ul class="nav nav-pills navbar-right">
+					<li ng-class="menuClass('accueil')">
+	                    <a href="#/accueil" title="Accueil">
+	                        <span class="glyphicon glyphicon-home">Accueil</span>
+	                    </a>
+	                </li>
+	                <li ng-class="menuClass('calendrier')">
+	                    <a href="#/calendrier">
+	                        <span class="glyphicon glyphicon-calendar">Calendrier</span>
+	                    </a>
+	                </li>
+	                <li ng-if="currentUser" ng-class="menuClass('profile')" title="Profil">
+	                    <a href="#/profile">
+	                        <span class="glyphicon glyphicon-user">Profil</span>
+	                    </a>
+	                </li>
+					<li ng-if="isAuthorized([userRoles.admin, userRoles.editor])">
+						<a title="Administrer" href="#/administrer">
+							<span class="glyphicon glyphicon-wrench">Administrer</span>
+						</a>
+					</li>
+					<!-- <li ng-if="isAuthorized([userRoles.admin, userRoles.editor])" class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="">
+							<span class="glyphicon glyphicon-tasks">
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#/administrer/editEvent">Créer un événement</a></li>
+							<li ng-if="isAuthorized(userRoles.admin)"><a href="#/administrer/editJeu">Ajouter un jeu</a></li>
+						</ul>
+	                </li> -->
+					<li ng-if="!currentUser">
+	                    <a href="#/login" title="Connexion">
+	                        <span class="glyphicon glyphicon-log-in">Connexion</span>
+	                    </a>
+	                </li>
+					<li ng-if="currentUser">
+	                    <a href="#" ng-click="logout()" title="Déconnexion">
+	                        <span class="glyphicon glyphicon-log-out">Déconnexion</span>
+	                    </a>
+	                </li>
+	            </ul>
+
+	            <ul class="defaultNav">
+	            	<li><a href="http://www.endlessfr.com">Retour au site</a></li>
+	            	<li><a href="http://forum.endlessfr.com">Aller au Forum</a></li>
+	            </ul>
+	        </div>
         </nav>
         
-	<div ng-view></div>	
+	<main id="main" ng-view></div>	
 	
-	<footer>
-		Copyrights 2014 EndlessRaider - tous droits réservés.
+	<!--/ FOOTER /-->
+
+	<footer id="footer">
+
+		<nav id="footerNav">
+
+			<ul>
+				 <li><a href="http://www.endlessfr.com/Presentation">Communauté</a>
+			  	<ul class="ssMenu">
+					<li><a href="http://www.endlessfr.com/Presentation">Présentation</a></li>
+					<li><a href="http://www.endlessfr.com/La-Charte">La charte</a></li>
+					<li><a href="http://www.endlessfr.com/Le-staff-Endless-20">Staff</a></li>
+				</ul>
+			  </li>
+				 <li><a href="http://www.endlessfr.com/Jeux">Jeux</a>
+			  	<ul class="ssMenu">
+					<li><a href="http://www.endlessfr.com/Guild-Wars-2-6">Guild Wars 2</a></li>
+					<li><a href="http://www.endlessfr.com/Minecraft">Minecraft</a></li>
+					<li><a href="http://www.endlessfr.com/The-Elder-Scrolls-Online">The Elder Scrolls Online</a></li>
+					<li><a href="http://www.endlessfr.com/Star-Citizen">Star Citizen</a></li>
+				</ul>
+			  	</li>
+				<li><a href="http://www.endlessfr.com/Guides">Guides</a>
+					<B_guidesarticle>
+				  	<ul class="ssMenu">
+						<BOUCLE_guidesarticle(ARTICLES){id_rubrique IN 14}{par date}{inverse}{0,3}>
+							<li class="animate"><a href="#URL_ARTICLE">#TITRE</a></li>
+						</BOUCLE_guidesarticle>
+					</ul>
+					</B_guidesarticle>
+				</li>
+
+				<li><a href="http://www.endlessfr.com/Medias-16">Médias</a>
+			  	<ul class="ssMenu">
+					<li><a href="http://www.endlessfr.com/Videos">Vidéos</a></li>
+					<li><a href="http://www.endlessfr.com/Captures-d-ecrans">Captures d'écrans</a></li>
+				</ul>
+			  </li>
+			  <li><a href="http://www.endlessfr.com/Nous-contacter-23" target="_blank">Contact</a>
+			  	<ul class="ssMenu">
+			  		<li><a href="http://www.endlessfr.com/Plates-formes">Où nous trouver</a></li>
+					<li><a href="http://www.endlessfr.com/Nous-contacter-23">Nous contacter</a></li>
+					<li><a href="http://www.endlessfr.com/Nous-rejoindre-22">Nous rejoindre</a></li>
+				</ul>
+			  </li>
+			</ul>
+
+		</nav>
+
+		<div class="socialLinks">
+			<h3>Retrouvez-nous</h3>
+			<ul>
+				<li><a href="http://www.facebook.com/groups/145091179608/"><img src="http://endlessfr.com/plugins/endlessfr/img/skin/picto-facebook-footer.png"><span>Facebook</span></a></li>
+				<li><a href="http://www.youtube.com/user/endlessfr/?sub_confirmation=1"><img src="http://endlessfr.com/plugins/endlessfr/img/skin/picto-youtube-footer.png"><span>Youtube</span></a></li>
+				<li><a href=""><img src="http://endlessfr.com/plugins/endlessfr/img/skin/picto-mumble-footer.png"><span>Mumble</span></a></li>
+				<li><a href=""><img src="http://endlessfr.com/plugins/endlessfr/img/skin/picto-steam-footer.png"><span>Steam</span></a></li>
+				<li><a href="http://forum.endlessfr.com/"><img src="http://endlessfr.com/plugins/endlessfr/img/skin/picto-forum-footer.png"><span>Forum Endless</span></a></li>
+			</ul>
+		</div>
+
+		<address>Copyrights 2014 Endlessfr - tous droits réservés.</address>
+
 	</footer>
 </body>
 </html>

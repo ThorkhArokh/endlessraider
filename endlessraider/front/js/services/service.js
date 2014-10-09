@@ -82,7 +82,7 @@ persoServices.factory('Personnage', function ($http) {
 	};
 });
   
-authServices.factory('AuthService', function ($http, Session, $cookies, $q) {
+authServices.factory('AuthService', function ($http, Session, $cookieStore, $q) {
   return {
     login: function (credentials) {
 		var d = $q.defer();
@@ -111,7 +111,7 @@ authServices.factory('AuthService', function ($http, Session, $cookies, $q) {
 		});
 	},
     isAuthenticated: function () {
-		return ($cookies.login != '' || !!Session.userId);
+		return (!!Session.userId);
     },
     isAuthorized: function (authorizedRoles) {
       if (!angular.isArray(authorizedRoles)) {
@@ -123,6 +123,9 @@ authServices.factory('AuthService', function ($http, Session, $cookies, $q) {
 	  }
 
 	  return (this.isAuthenticated() && authorise );
+    },
+    getSession: function () {
+        return Session.get();
     }
   };
 });

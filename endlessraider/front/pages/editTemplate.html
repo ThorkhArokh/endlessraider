@@ -1,7 +1,7 @@
 <div class="panel panel-default" ng-controller="TemplateEditCtrl">
 	
-	<div ng-show="typeAdd" class="panel-heading">Ajouter un template</div>
-	<div ng-show="!typeAdd" class="panel-heading">Editer un template</div>
+	<div ng-show="typeAdd" class="panel-heading tt1" class="tt1">Ajouter un template</div>
+	<div ng-show="!typeAdd" class="panel-heading tt1" class="tt1">Editer un template</div>
 	<div class="panel-body" >
 		<div ng-show="listJeux.length < 1" class="alert alert-warning">Aucun jeu n'est actuellement créé. Cliquez <a href='#/administrer/editJeu'>ici</a> pour vous en créer un. <i>NB : Vous ne pouvez pas créé de template sans le rattacher à un jeu.</i></div>
 		<div ng-if="listJeux.length > 0">
@@ -32,7 +32,7 @@
 					<div ng-show="messageEventsImg.libelle" class="alert {{messageEventsImg.type}}">{{messageEventsImg.libelle}}</div>
 				</div>
 				<div class="input-group">
-					<label for="image">Nombre maximum de participants :</label>
+					<label for="image">Nombre maximum de participants zzzzz:</label>
 					<div>
 					<input class="form-control" type="text" id="image" name="image" placeholder="1"
 						ng-model="event.nbrParticipantMax" />

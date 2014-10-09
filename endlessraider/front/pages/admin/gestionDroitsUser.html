@@ -1,14 +1,14 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Utilisateurs</div>
-	<div class="panel-body">
+	<div class="panel-body droits">
 		<table class="table">
 		<tbody>
 			<tr>
 				<th>Login</th>
 				<th>Rôle</th>
 				<th>Jeux administrés</th>
-				<th></th>
-				<th></th>
+				<th>Ajouter un jeu</th>
+				<th>Supprimer un jeu</th>
 			</tr>
 			<tr ng-repeat="user in listeUsers ">
 				<td>{{user.login}}</td>
@@ -34,7 +34,7 @@
 						onbeforesave="addJeuAdminParUser($data, user.id)" href="#" 
 						editable-select="jeuToAddToListAdminJeuUser"
 						e-ng-options="jeu.nom for jeu in listJeux" >
-						<span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-tower"></span>
+						<img src="/endlessraider/front/images/pictos/picto-add.png"></span>
 					</a>
 				</td>
 				<td>
@@ -43,7 +43,7 @@
 						onbeforesave="deleteJeuAdminParUser($data, user.id)" href="#" 
 						editable-select="jeuToDeleteToListAdminJeuUser"
 						e-ng-options="jeu.nom for jeu in user.listeJeuAdmin" >
-						<span class="glyphicon glyphicon-minus"></span><span class="glyphicon glyphicon-tower"></span>
+						<img src="/endlessraider/front/images/pictos/picto-delete.png"></span>
 					</a>
 				</td>
 			</tr>

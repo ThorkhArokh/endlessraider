@@ -1,32 +1,32 @@
 <div class="panel panel-default" ng-controller="JeuEditCtrl">
-	<div ng-show="typeAdd" class="panel-heading">Ajouter un jeu</div>
-	<div ng-show="!typeAdd" class="panel-heading">Editer un jeu</div>
+	<div ng-show="typeAdd" class="panel-heading tt1">Ajouter un jeu</div>
+	<div ng-show="!typeAdd" class="panel-heading tt1">Editer un jeu</div>
 	<div class="panel-body">
 		<form name="editJeuForm" ng-submit="submit(jeu)" >
 			<div class="form-group">
 				<div class="input-group">
 					<label for="nom">Nom :<span>*</span></label>
-					<div>
+
 					<input class="form-control" required type="text" id="nom" name="nom" placeholder="Nom"
 						ng-model="jeu.nom" />
-					</div>
+
 				</div>
 				<div class="input-group">
 					<label for="nom">Type :</label>
-					<div>
+
 					<!-- <input class="form-control" type="text" id="type" name="type" placeholder="MMORPG, FPS..."
 						ng-model="jeu.type" /> -->
 					<select ng-init="jeu.type" required id="type" name="type" class="form-control" ng-model="jeu.type" ng-options="type.libelle for type in listTypeJeu"></select>
-					</div>
+
 				</div>
 				<div class="input-group">
 					<label for="nom">Icône :</label>
-					<div>
+
 					<!-- <input class="form-control" type="text" id="icone" name="icone" placeholder="/chemin/image.png"
 						ng-model="jeu.iconPath" /> -->
 					<!-- <input type="text" ng-model="jeu.iconPath"> -->
-					<img ng-show="jeu.iconPath" class="icone" ng-src="{{jeu.iconPath}}">
 					<input type="file" ng-file-select="onFileSelect($files, jeu)" >
+					<img ng-show="jeu.iconPath" class="icone" ng-src="{{jeu.iconPath}}">
 					<!-- <div class="drop-box" ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class"
 						ng-show="dropSupported">drop files here</div>
 					<div ng-file-drop-available="dropSupported=true" 
@@ -38,8 +38,8 @@
 				<div ng-include="templateJeu.url+jeu.type.code+'/'+templateJeu.nom"></div>
 				
 			</div>
-		<a class="btn btn-default navbar-btn" id="retour" href="#/administrer/section/jeux" >Retour</a>
-		<button class="btn btn-default navbar-btn" ng-disabled="editJeuForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>
+		<a class="button" id="retour" href="#/administrer/section/jeux" >Retour</a>
+		<button class="button" ng-disabled="editJeuForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>
 		</form>
 		<div ng-show="messageJeux.libelle" class="alert {{messageJeux.type}}">{{messageJeux.libelle}}</div>
 	</div>

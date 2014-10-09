@@ -30,8 +30,8 @@
 				<!-- On inclus le bon template selon le type de jeu -->
 				<div ng-include="templatePerso.url+personnage.jeu.type.code+'/'+templatePerso.nom"></div>
 			</div>
-		<a class="btn btn-default navbar-btn" id="retour" href="#/profile" >Retour</a>
-		<button class="btn btn-default navbar-btn" ng-disabled="addPersoForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>
+		<a class="button" id="retour" href="#/profile" >Retour</a>
+		<button class="button" ng-disabled="addPersoForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>
 		</form>
 		<div ng-show="message.libelle" class="alert {{message.type}}">{{message.libelle}}</div>
 	</div>
