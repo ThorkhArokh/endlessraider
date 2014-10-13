@@ -27,8 +27,8 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/endlessraider/back/persistance/userDao.
 					$data['message'] = "Login ou password incorrect. (login : ".$username;
 				}
 			} catch (Exception $e) {
-				$resultat['success'] = false;
-				$resultat['message'] = $e->getMessage();
+				$data['success'] = false;
+				$data['message'] = $e->getMessage();
 			}
 		} else {
 			$data['message'] = "Veuillez saisir un login.";

@@ -11,6 +11,7 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/endlessraider/back/class/RoleUser.php')
 // Fonction qui ramène un utilisateur selon son login
 function getUserByName($nom) {
 	
+	try {
 	$connexionBDD = getConnexionBDD();
 	$sqlQuery = $connexionBDD->prepare("SELECT id, login, droit from er_user where login = :nomUser");
 	
@@ -23,6 +24,9 @@ function getUserByName($nom) {
     } 
 
 	return $user;
+	}  catch (Exception $e) {
+		throw $e;
+	}
 }
 
 // Fonction qui retourne un utilisateur complet selon son identifiant

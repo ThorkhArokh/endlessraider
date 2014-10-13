@@ -45,7 +45,6 @@ endlessRaiderController.controller('LoginCtrl', function (Session, $scope, $root
     }, 
 	function (reason) {
 		$rootScope.currentUser = null;
-		$cookies.login = null;
 		$scope.message.libelle = reason;
 		$scope.message.type = "alert-danger";
 		// On efface le message après un certain temps d'affichage
