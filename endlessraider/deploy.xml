@@ -3,7 +3,7 @@
 <project name="DeployEndlessraider" default="all" basedir="./">
 
 <!-- Définition de l'emplacement du répertoire deploy -->
-<property name="dir.serveur" value="C:\My Program Files\EasyPHP\data\localweb\endlessraider" />
+<property name="dir.serveur" value="E:\Applications\EasyPHP-5.3.5.0\www\endlessraider" />
 
 <!-- Définition des variables des chemins projets -->
 <property name="dir.projet" value=".\" />

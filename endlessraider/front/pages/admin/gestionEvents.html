@@ -29,9 +29,9 @@
 				<td><a href="#/evenement/{{event.id}}">{{event.nom}}</a></td>
 				<td><span>{{event.date}}</span> <span ng-show="event.heure"> - {{event.heure}}</span></td>
 				<td><img alt="{{event.jeu.nom}}" title="{{event.jeu.nom}}" class="icone" ng-src="{{event.jeu.iconPath}}" /></td>
-				<td><a title="Modifier l'&eacute;v&eacute;nement" href="#/administrer/editEvent/{{event.id}}"><img src="/endlessraider/front/images/pictos/picto-edit.png"></a></td>
-				<td><a title="Supprimer l'&eacute;v&eacute;nement" href="#/administrer" ng-click="deleteEvent(event.id)"><img src="/endlessraider/front/images/pictos/picto-delete.png"></a></td>
-				<td><a title="Enregistrer comme template" href="#/administrer" ng-click="saveEventAsTemplate(event.id)"><img src="/endlessraider/front/images/pictos/picto-add.png"></a></td>
+				<td><a title="Modifier l'&eacute;v&eacute;nement" href="#/administrer/editEvent/{{event.id}}"><img class="icone" src="/endlessraider/front/images/pictos/picto-edit.png"></a></td>
+				<td><a title="Supprimer l'&eacute;v&eacute;nement" href="#/administrer" ng-click="deleteEvent(event.id)"><img class="icone" src="/endlessraider/front/images/pictos/picto-delete.png"></a></td>
+				<td><a title="Enregistrer comme template" href="#/administrer" ng-click="saveEventAsTemplate(event.id)"><img class="icone" src="/endlessraider/front/images/pictos/picto-add.png"></a></td>
 			</tr>
 		</table>
 		<div ng-show="messageEvents.libelle" class="alert {{messageEvents.type}}">{{messageEvents.libelle}}</div>

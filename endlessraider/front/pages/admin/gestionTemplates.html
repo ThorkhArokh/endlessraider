@@ -25,9 +25,9 @@
 			<tr ng-repeat="template in listTemplates | filtreEventParJeu:filtreTemplateJeuTab | filter : queryTemplate">
 				<td><a href="#/evenement/template/{{template.id}}">{{template.nom}}</a></td>
 				<td><img alt="{{template.jeu.nom}}" title="{{template.jeu.nom}}" class="icone" ng-src="{{template.jeu.iconPath}}" /></td>
-				<td><a title="Cr&eacute;er un &eacute;v&eacute;nement &agrave; partir du template" href="#/administrer/editEvent/template/{{template.id}}"><img src="/endlessraider/front/images/pictos/picto-add.png"></a></td>
-				<td><a title="Modifier le template" href="#/administrer/editTemplate/{{template.id}}"><img src="/endlessraider/front/images/pictos/picto-edit.png"></a></td>
-				<td><a title="Supprimer le template" href="#/administrer" ng-click="deleteTemplate(template.id)"><img src="/endlessraider/front/images/pictos/picto-delete.png"></a></td>
+				<td><a title="Cr&eacute;er un &eacute;v&eacute;nement &agrave; partir du template" href="#/administrer/editEvent/template/{{template.id}}"><img class="icone" src="/endlessraider/front/images/pictos/picto-add.png"></a></td>
+				<td><a title="Modifier le template" href="#/administrer/editTemplate/{{template.id}}"><img class="icone" src="/endlessraider/front/images/pictos/picto-edit.png"></a></td>
+				<td><a title="Supprimer le template" href="#/administrer" ng-click="deleteTemplate(template.id)"><img class="icone" src="/endlessraider/front/images/pictos/picto-delete.png"></a></td>
 			</tr>
 		</table>
 		<div ng-show="messageTemplates.libelle" class="alert {{messageTemplates.type}}">{{messageTemplates.libelle}}</div>

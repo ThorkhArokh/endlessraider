@@ -24,7 +24,7 @@
 				<td>
 					<ul class="nav nav-pills">
 					<li ng-repeat="jeu in user.listeJeuAdmin">
-						<img alt="{{jeu.nom}}" title="{{jeu.nom}}" class="icone" ng-src="{{jeu.iconPath}}" />
+						<img class="icone" alt="{{jeu.nom}}" title="{{jeu.nom}}" class="icone" ng-src="{{jeu.iconPath}}" />
 					</li>
 					<ul>
 				</td>
@@ -34,7 +34,7 @@
 						onbeforesave="addJeuAdminParUser($data, user.id)" href="#" 
 						editable-select="jeuToAddToListAdminJeuUser"
 						e-ng-options="jeu.nom for jeu in listJeux" >
-						<img src="/endlessraider/front/images/pictos/picto-add.png"></span>
+						<img class="icone" src="/endlessraider/front/images/pictos/picto-add.png"></span>
 					</a>
 				</td>
 				<td>
@@ -43,7 +43,7 @@
 						onbeforesave="deleteJeuAdminParUser($data, user.id)" href="#" 
 						editable-select="jeuToDeleteToListAdminJeuUser"
 						e-ng-options="jeu.nom for jeu in user.listeJeuAdmin" >
-						<img src="/endlessraider/front/images/pictos/picto-delete.png"></span>
+						<img class="icone" src="/endlessraider/front/images/pictos/picto-delete.png"></span>
 					</a>
 				</td>
 			</tr>
