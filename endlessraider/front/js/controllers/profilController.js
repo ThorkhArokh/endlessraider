@@ -2,7 +2,7 @@
 endlessRaiderApp.filter('filtrejeu', function() {
     return function(listePersos, jeu) {
 		var listePersosFiltre = [];
-		if(jeu && jeu != '') {
+		if(jeu && jeu != '' && listePersos) {
 			for (var i = 0; i < listePersos.length; i++) {
 				if(listePersos[i].jeu.id == jeu.id) {
 					listePersosFiltre.push(listePersos[i]);
