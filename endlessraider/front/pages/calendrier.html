@@ -32,7 +32,7 @@
 			<tr ng-repeat="semaine in dates" >
 				<td class="jour" ng-repeat="date in semaine">
 				<span>{{date.jour}}</span>
-				<span ng-if="date.jour && isAuthorized('admin') && !isDatePast(date)">
+				<span ng-if="date.jour && isAuthorized([userRoles.admin, userRoles.editor]) && !isDatePast(date)">
 					<a href="#/administrer/editEvent/date/{{date.jour}}/{{date.mois}}/{{date.annee}}" title="Ajouter un &eacute;v&eacute;nement &agrave; cette date"><span class="glyphicon glyphicon-plus addEvent">+</span></a>
 				</span>
 				<div ng-repeat="event in date.listeEvent | filtreEventParJeu:filtreEventJeuTab" class="event">

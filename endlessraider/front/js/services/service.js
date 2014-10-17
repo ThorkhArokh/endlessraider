@@ -84,15 +84,9 @@ persoServices.factory('Personnage', function ($http) {
   
 authServices.factory('AuthService', function ($http, Session, $cookieStore, $q) {
   return {
-    login: function (credentials) {
+    login: function () {
 		var d = $q.defer();
-//		$http({
-//			method: 'POST',
-//			url: '/endlessraider/back/services/user/connectUser.php',
-//			data:{credentials: credentials},
-//			headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
-//		})
-		$http.post('/endlessraider/back/services/user/connectUser.php', credentials)
+		$http.post('/endlessraider/back/services/user/connectUser.php')
         .then(function (res) {
 			if(res.data.success) {
 				Session.create(res.data.user.id, res.data.user.login, res.data.user.role.code);

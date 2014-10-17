@@ -2,7 +2,21 @@
 var endlessRaiderController = angular.module('endlessRaiderController', []);
 
 // Controller permettant de gérer les class css des liens actifs suite au choix utilisateur
-endlessRaiderController.controller("MainCtrl", function(Session, USER_ROLES, $scope, $rootScope, $location, AuthService, $cookies) {
+endlessRaiderController.controller("MainCtrl", function(Session, USER_ROLES, $scope, $rootScope, $location, AuthService, $cookies, $timeout) {
+	$scope.message = {};
+	AuthService.login().then(
+	function() {
+		$location.path( "/calendrier" );
+		$rootScope.currentUser = Session.userId;
+    }, 
+	function (reason) {
+		$rootScope.currentUser = null;
+		$scope.message.libelle = reason;
+		$scope.message.type = "alert-danger";
+		// On efface le message après un certain temps d'affichage
+		$timeout(function(){$scope.message.libelle = ''}, 2000); 
+    }); 
+	
 	AuthService.getSession();
 	$rootScope.currentUser = Session.userId;
 	

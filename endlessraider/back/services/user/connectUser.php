@@ -8,32 +8,47 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/endlessraider/back/persistance/userDao.
 	$data['success'] = false;
 	$data['message'] = "";
 	
-	$credentials = json_decode(file_get_contents("php://input"));
-	if(isset($credentials)) {
-		//$credentials = $_POST["credentials"];
-		$username = $credentials->username;
-		$upswd = $credentials->password;
+	try {
+		$userEndless = getUserId();
+	}  catch (Exception $e) {
+		$data['message'] = $e;
+	}
 	
-		// TODO : mettre ici la gestion du mot de passe
-		
-		if(isset($username)) {
-			try {
-				// On récupère l'utisateur via son login
-				$user = getUserByName($username);
+	if ($userEndless > 1) {
+		try {
+			// On récupère l'utisateur via son id
+			$user = getUserById($userEndless);
+			if($user != null) {
+				$_SESSION['userConnect'] = $user;
+				$data['user'] = $user ;
+				$data['success'] = true;
+			} else {
+				$login = getInfosUserEndless($userEndless);
+				$user = getUserByName($login);
 				if($user != null) {
 					$_SESSION['userConnect'] = $user;
 					$data['user'] = $user ;
 					$data['success'] = true;
 				} else {
-					$data['message'] = "Login ou password incorrect. (login : ".$username;
+					addUserWithId($userEndless);
+					$user = getUserById($userEndless);
+					if($user != null) {
+						$_SESSION['userConnect'] = $user;
+						$data['user'] = $user ;
+						$data['success'] = true;
+					} else {
+						$data['success'] = false;
+						$data['message'] = "Erreur lors de la récupération de la session.";
+					}
 				}
-			} catch (Exception $e) {
-				$data['success'] = false;
-				$data['message'] = $e->getMessage();
 			}
-		} else {
-			$data['message'] = "Veuillez saisir un login.";
+		} catch (Exception $e) {
+			$data['success'] = false;
+			$data['message'] = $e->getMessage();
 		}
+	} else {
+		$data['success'] = false;
+		$data['message'] = "Session Expirée, veuillez vous reconnecter.";
 	}
 	
 	echo json_encode($data);

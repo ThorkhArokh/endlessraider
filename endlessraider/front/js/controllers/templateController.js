@@ -2,7 +2,7 @@
 endlessRaiderApp.filter('filtreStatut', function() {
     return function(listePaticipants, statut) {
 		var listeParticipantsFiltre = [];
-		if(statut && statut != '') {
+		if(statut && statut != '' && listePaticipants) {
 			for (var i = 0; i < listePaticipants.length; i++) {
 				if(listePaticipants[i].statut.code == statut.code) {
 					listeParticipantsFiltre.push(listePaticipants[i]);
@@ -19,7 +19,7 @@ endlessRaiderApp.filter('filtreStatut', function() {
 endlessRaiderApp.filter('filtreRole', function() {
     return function(listePaticipants, role) {
 		var listeParticipantsFiltre = [];
-		if(role && role != '') {
+		if(role && role != '' && listePaticipants) {
 			for (var i = 0; i < listePaticipants.length; i++) {
 				if(listePaticipants[i].role.id == role.id) {
 					listeParticipantsFiltre.push(listePaticipants[i]);
@@ -36,7 +36,7 @@ endlessRaiderApp.filter('filtreRole', function() {
   endlessRaiderApp.filter('filtreRoleDispo', function() {
     return function(listePaticipants, role) {
 		var listeParticipantsFiltre = [];
-		if(role && role != '') {
+		if(role && role != '' && listePaticipants) {
 			for (var i = 0; i < listePaticipants.length; i++) {
 				if(listePaticipants[i].role.id == role.id && listePaticipants[i].statut.code == "D") {
 					listeParticipantsFiltre.push(listePaticipants[i]);

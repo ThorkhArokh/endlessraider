@@ -2,7 +2,7 @@
 endlessRaiderApp.filter('filtreEventParJeu', function() {
     return function(listeEvents, jeu) {
 		var listeEventsFiltre = [];
-		if(jeu && jeu != '') {
+		if(jeu && jeu != '' && listeEvents) {
 			for (var i = 0; i < listeEvents.length; i++) {
 				if(listeEvents[i].jeu.id == jeu.id) {
 					listeEventsFiltre.push(listeEvents[i]);

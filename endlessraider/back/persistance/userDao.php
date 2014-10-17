@@ -8,22 +8,73 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/endlessraider/back/class/Classe.php');
 require_once($_SERVER["DOCUMENT_ROOT"].'/endlessraider/back/class/Personnage.php');
 require_once($_SERVER["DOCUMENT_ROOT"].'/endlessraider/back/class/RoleUser.php');
 
+function getUserId() {
+	try {
+		$userId = "";
+		foreach ($_COOKIE as $key => $value) {
+			if (substr($key, 0, 7) == "phpbb3_" && substr($key, -2) == "_u") {
+				$userId = $value;
+				break;
+			}
+		}
+		return $userId;
+	}  catch (Exception $e) {
+		throw $e;
+	}
+}
+
+// Méthode qui récupère les informations d'un utilisateur via son identifiant
+function getInfosUserEndless($user_id) {
+	try {
+		$connexionBDD = getConnexionBDD();
+		$sqlQuery = $connexionBDD->prepare("SELECT u.username as nom FROM phpbb_users u where u.user_id = :userId");
+		$sqlQuery->execute(array('userId' => $user_id));
+		while($lignes=$sqlQuery->fetch(PDO::FETCH_OBJ))
+		{
+			$userName = $lignes->nom;
+		}
+	
+		return $userName;
+	}  catch (Exception $e) {
+		throw $e;
+	}
+}
+
+function addUserWithId($id) {
+	try {
+		$login = getInfosUserEndless($id);
+
+			$connexionBDD = getConnexionBDD();
+			$sqlQuery = $connexionBDD->prepare("INSERT INTO er_user (id, login, droit) VALUES (:id, :login, :droit)");
+			
+			$resultat = $sqlQuery->execute(array(
+					'id' => $id,
+					'login' => $login,
+					'droit' => 'membre'
+			));
+			
+			return $resultat;
+
+	}  catch (Exception $e) {
+		throw $e;
+	}
+}
+
 // Fonction qui ramène un utilisateur selon son login
 function getUserByName($nom) {
-	
 	try {
-	$connexionBDD = getConnexionBDD();
-	$sqlQuery = $connexionBDD->prepare("SELECT id, login, droit from er_user where login = :nomUser");
+		$connexionBDD = getConnexionBDD();
+		$sqlQuery = $connexionBDD->prepare("SELECT id, login, droit from er_user where login = :nomUser");
+		
+		$sqlQuery->execute(array('nomUser' => $nom));
+		while($lignes=$sqlQuery->fetch(PDO::FETCH_OBJ))
+	    {
+			$user = new User($lignes->id, $lignes->login, $lignes->droit);
+			// On récupère les personnages de l'utilisateur
+			$user->persos = getPersonnagesByUserId($user->id);
+	    } 
 	
-	$sqlQuery->execute(array('nomUser' => $nom));
-	while($lignes=$sqlQuery->fetch(PDO::FETCH_OBJ))
-    {
-		$user = new User($lignes->id, $lignes->login, $lignes->droit);
-		// On récupère les personnages de l'utilisateur
-		$user->persos = getPersonnagesByUserId($user->id);
-    } 
-
-	return $user;
+		return $user;
 	}  catch (Exception $e) {
 		throw $e;
 	}
@@ -31,18 +82,22 @@ function getUserByName($nom) {
 
 // Fonction qui retourne un utilisateur complet selon son identifiant
 function getUserById($id) {
-	// on créé la requête SQL
-	$connexionBDD = getConnexionBDD();
-	$sqlQuery = $connexionBDD->prepare("SELECT id, login, droit from er_user where id = :idUser");
-	$sqlQuery->execute(array('idUser' => $id));
-	while($lignes=$sqlQuery->fetch(PDO::FETCH_OBJ))
-    {
-		$user = new User($lignes->id, $lignes->login, $lignes->droit);
-		// On récupère les personnages de l'utilisateur
-		$user->persos = getPersonnagesByUserId($user->id);
-    } 
-	
-	return $user;
+	try {
+		// on créé la requête SQL
+		$connexionBDD = getConnexionBDD();
+		$sqlQuery = $connexionBDD->prepare("SELECT id, login, droit from er_user where id = :idUser");
+		$sqlQuery->execute(array('idUser' => $id));
+		while($lignes=$sqlQuery->fetch(PDO::FETCH_OBJ))
+	    {
+			$user = new User($lignes->id, $lignes->login, $lignes->droit);
+			// On récupère les personnages de l'utilisateur
+			$user->persos = getPersonnagesByUserId($user->id);
+	    } 
+		
+		return $user;
+	}  catch (Exception $e) {
+		throw $e;
+	}
 }
 
 // fonction qui récupère tous les utilisateurs
