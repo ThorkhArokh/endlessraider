@@ -1,5 +1,9 @@
 <div id='calendrier'>
     <div class="panel panel-default">
+    	<label for="filtreEventJeuTab">Filtrer sur le jeu : </label>
+		<select ng-model="filtreEventJeuTab" id="filtreEventJeuTab" ng-options="jeu.nom for jeu in listJeux">
+			<option value=''>Tout</option>
+		</select>
         <div class="panel-heading">
             <ul class="pager">
                 <li class="previous"><a href="#/calendrier/{{anneeEnCours-1}}">&larr; </a></li>
@@ -16,7 +20,7 @@
                 </ul>
             </div>
         </div>
-
+				
 		<table class="table">
 		<tbody>
 			<tr>
@@ -28,10 +32,10 @@
 			<tr ng-repeat="semaine in dates" >
 				<td class="jour" ng-repeat="date in semaine">
 				<span>{{date.jour}}</span>
-				<span ng-if="date.jour && isAuthorized('admin')">
+				<span ng-if="date.jour && isAuthorized('admin') && !isDatePast(date)">
 					<a href="#/administrer/editEvent/date/{{date.jour}}/{{date.mois}}/{{date.annee}}" title="Ajouter un &eacute;v&eacute;nement &agrave; cette date"><span class="glyphicon glyphicon-plus addEvent">+</span></a>
 				</span>
-				<div ng-repeat="event in date.listeEvent" class="event">
+				<div ng-repeat="event in date.listeEvent | filtreEventParJeu:filtreEventJeuTab" class="event">
 					<a href="#/evenement/{{event.id}}" title="{{event.nom}}">
                         <img class="gamePicto" ng-src="{{event.jeu.iconPath}}" ALT="{{event.nom}}" />
                     </a>

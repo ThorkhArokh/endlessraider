@@ -19,6 +19,26 @@ endlessRaiderController.controller("MainCtrl", function(Session, USER_ROLES, $sc
 	
 	$scope.isAuthorized = function(authorizedRoles) { 
 		return AuthService.isAuthorized(authorizedRoles)};
+		
+	$scope.isDatePast = function(date) {
+		var isPast = false;
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+		if(date.annee < yyyy) {
+			isPast = true;
+		} else if(date.annee == yyyy){
+			if(date.mois < mm) {
+				isPast = true;
+			} else if(date.mois == mm) { 
+				if(date.jour < dd) {
+					isPast = true;
+				}
+			}
+		}
+		return isPast;
+	};
   
 	// Fonction de déconnexion
 	$scope.logout = function() {
@@ -77,10 +97,15 @@ endlessRaiderController.controller('ErreurCtrl', ['$scope', '$routeParams', func
 
 
 // définition du contrôleur pour l'agenda
-endlessRaiderController.controller('AgendaCtrl', ['$scope', 'Agenda', '$routeParams', afficheCalendrier]);
+endlessRaiderController.controller('AgendaCtrl', ['$scope', 'Agenda', '$routeParams', 'Jeu', afficheCalendrier]);
 
 // Fonction qui permet d'afficher la page du calendrier pour une année et un mois donné
-function afficheCalendrier($scope, Agenda, $routeParams) {
+function afficheCalendrier($scope, Agenda, $routeParams, Jeu) {
+	// On récupère la liste des jeux
+	Jeu.getList().success(function(data, status, headers, config) {
+		$scope.listJeux = data;
+	});
+
   $scope.anneeEnCours = $routeParams.annee;
   $scope.moisEnCours = $routeParams.mois;
   if($scope.anneeEnCours === undefined) {
