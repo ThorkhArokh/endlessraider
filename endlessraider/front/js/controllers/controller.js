@@ -5,7 +5,6 @@ var endlessRaiderController = angular.module('endlessRaiderController', []);
 endlessRaiderController.controller("MainCtrl", function(Session, USER_ROLES, $scope, $rootScope, $location, AuthService, $cookies) {
 	AuthService.getSession();
 	$rootScope.currentUser = Session.userId;
-	$rootScope.header = 'http://endlessfr.com/global/modules/header/index.html';
 	
 	$scope.userRoles = USER_ROLES;
 	$scope.menuClass = function(page) {

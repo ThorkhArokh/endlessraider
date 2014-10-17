@@ -86,12 +86,13 @@ authServices.factory('AuthService', function ($http, Session, $cookieStore, $q) 
   return {
     login: function (credentials) {
 		var d = $q.defer();
-		$http({
-			method: 'POST',
-			url: '/endlessraider/back/services/user/connectUser.php',
-			data: $.param({ "credentials": credentials }),
-			headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
-		})
+//		$http({
+//			method: 'POST',
+//			url: '/endlessraider/back/services/user/connectUser.php',
+//			data:{credentials: credentials},
+//			headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
+//		})
+		$http.post('/endlessraider/back/services/user/connectUser.php', credentials)
         .then(function (res) {
 			if(res.data.success) {
 				Session.create(res.data.user.id, res.data.user.login, res.data.user.role.code);

@@ -8,10 +8,11 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/endlessraider/back/persistance/userDao.
 	$data['success'] = false;
 	$data['message'] = "";
 	
-	if(isset($_POST["credentials"])) {
-		$credentials = $_POST["credentials"];
-		$username = $credentials['username'];
-		$upswd = $credentials['password'];
+	$credentials = json_decode(file_get_contents("php://input"));
+	if(isset($credentials)) {
+		//$credentials = $_POST["credentials"];
+		$username = $credentials->username;
+		$upswd = $credentials->password;
 	
 		// TODO : mettre ici la gestion du mot de passe
 		

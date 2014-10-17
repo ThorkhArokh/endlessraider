@@ -4,12 +4,14 @@
   <meta charset="utf-8">
   <title>EndlessRaider</title>
 	<link rel="stylesheet" href="front/css/endlessRaiderAnim.css" >
-   	<!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="front/css/xeditable.css" >
     <link rel="stylesheet" href="front/css/endlessRaider.css" >
+	<link rel="stylesheet" href="http://www.endlessfr.com/global/ressources/css/reset.css">
+	<link rel="stylesheet" href="http://www.endlessfr.com/global/ressources/css/global.css">
+	<link rel="stylesheet" href="http://www.endlessfr.com/global/modules/header/css/header.css">
+	
 
     <!-- fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
@@ -19,8 +21,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="http://endlessfr.com/plugins/endlessfr/img/favicon.png" />
 	
     <!-- JavaScript lib -->
-	<script src="front/lib/jquery-1.10.2.js"></script>
-	<script src="front/lib/jquery-ui-1.10.4.min.js"></script>
 	<script src="front/lib/angular-file-upload-shim.min.js"></script> 
     <script src="front/lib/angular.js"></script>
 	<script src="front/lib/angular-route.js"></script>
@@ -31,10 +31,13 @@
 	<script type="text/javascript" src="front/lib/underscore-min.js"></script>
 	<script type="text/javascript" src="front/lib/textAngular.min.js"></script> 
 	<script type="text/javascript" src="front/lib/textAngular-sanitize.min.js"></script> 
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script src="front/lib/xeditable.min.js"></script>
 	
 	<!-- JavaScript application -->
+	<script src="http://www.endlessfr.com/global/ressources/js/jquery-1.10.2.js"></script>
+	<script src="http://www.endlessfr.com/global/ressources/js/global.js"></script>
+	<script src="http://www.endlessfr.com/global/modules/header/js/connectEndless.js"></script>
+	<script src="http://www.endlessfr.com/global/modules/header/js/encarConnexion.js"></script>
 	<script src="front/js/endlessRaider.js"></script>
 	<script src="front/js/app.js"></script>
     <script src="front/js/controllers/controller.js"></script>
@@ -49,11 +52,11 @@
 </head>
 <body ng-controller="MainCtrl">
   
-  <div id='wrapper' >
-        <header id="header">
-		<!-- <div ng-include="header" ></div>  -->
+  	<header id="header">
+		<div class="connectWrapper" id="encarConnexion"></div>
 	</header>
-		
+  
+  <div id='wrapper' >		
         <nav id='menu' class="navbar navbar-default" role="navigation">
         	<div class="ulWrapper">
 	            <ul class="nav nav-pills navbar-right">
@@ -106,7 +109,9 @@
 	        </div>
         </nav>
         
-	<main id="main" ng-view></div>	
+	<main id="main" ng-view>
+	
+	</div>	
 	
 	<!--/ FOOTER /-->
 
