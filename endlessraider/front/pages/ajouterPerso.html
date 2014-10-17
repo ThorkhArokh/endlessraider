@@ -27,8 +27,10 @@
 					<label for="jeu">Jeu:<span>*</span></label>
 					<select ng-change="resetClasseRace()" ng-init="personnage.jeu" required id="jeu" name="jeu" class="form-control" ng-model="personnage.jeu" ng-options="jeu.nom for jeu in listJeux"></select>
 				</div>
+				<span ng-if="personnage && personnage.jeu">
 				<!-- On inclus le bon template selon le type de jeu -->
 				<div ng-include="templatePerso.url+personnage.jeu.type.code+'/'+templatePerso.nom"></div>
+				</span>
 			</div>
 		<a class="button" id="retour" href="#/profile" >Retour</a>
 		<button class="button" ng-disabled="addPersoForm.$invalid" type="submit" id="submit" value="Submit">Enregistrer</button>

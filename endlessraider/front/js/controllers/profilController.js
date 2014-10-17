@@ -23,17 +23,18 @@ function(TEMPLATE, $scope, User, Personnage, Jeu, $timeout) {
 	$scope.templateProfilePerso.url = TEMPLATE.path;
 	$scope.templateProfilePerso.nom = TEMPLATE.profilePerso+TEMPLATE.extention;
 	
+	// On récupère la liste des jeux
+	Jeu.getList().then(function(result) {
+		$scope.listJeux = result.data;
+		if($scope.listJeux && $scope.listJeux.length > 0) {
+			$scope.showPanel = $scope.listJeux[0];
+		}
+	});
+	
 	// On récupère le profil de l'utilisateur
 	 User.get().success(function(data, status, headers, config) {
 		$scope.user = data;
 		$scope.listePersos = $scope.user.persos;
-		// On récupère la liste des jeux
-		Jeu.getList().then(function(result) {
-			$scope.listJeux = result.data;
-			if($scope.listJeux && $scope.listJeux.length > 0) {
-				$scope.showPanel = $scope.listJeux[0];
-			}
-		});
 	});
 	
 	// Fonction qui permet de supprimer un personnage de la liste
@@ -51,7 +52,10 @@ function(TEMPLATE, $scope, User, Personnage, Jeu, $timeout) {
 			$timeout(function(){$scope.message.libelle = ''}, 2000);
 		}).then(function() {
 			// On met à jour l'utilisateur
-			$scope.user = User.get();
+			User.get().success(function(data, status, headers, config) {
+				$scope.user = data;
+				$scope.listePersos = $scope.user.persos;
+			});;
 		});
 	}
 	
